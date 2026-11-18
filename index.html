@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>澳洲9日行程 v4.0 · 互动地图 & 景点通勤价格全解</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="澳洲9日行程" />
+  <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121518" media="(prefers-color-scheme: dark)" />
+  <meta name="format-detection" content="telephone=no" />
+  <link id="ios-touch-icon" rel="apple-touch-icon" sizes="180x180" href="" />
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --surface: #ffffff;
+      --surface-soft: #f1eee7;
+      --border: #e3ded3;
+      --border-soft: #ebe6dc;
+      --text: #1c2024;
+      --text-muted: #5b626a;
+      --brand: #0e746c;
+      --brand-fg: #ffffff;
+      --brand-soft: rgba(14, 116, 108, 0.11);
+      --ok: #15803d;
+      --ok-soft: rgba(21, 128, 61, 0.11);
+      --warn: #b45309;
+      --warn-soft: rgba(180, 83, 9, 0.11);
+      --err: #b91c1c;
+      --err-soft: rgba(185, 28, 28, 0.10);
+      --blue: #1d4ed8;
+      --blue-soft: rgba(29, 78, 216, 0.10);
+      --orange: #c2410c;
+      --orange-soft: rgba(194, 65, 12, 0.10);
+      --plum: #6d28d9;
+      --plum-soft: rgba(109, 40, 217, 0.10);
+      --nav-bg: rgba(247, 245, 240, 0.91);
+      --shadow: 0 2px 10px rgba(20, 24, 28, 0.04);
+      /* Map semantic colors */
+      --map-sea: #dff1f5;
+      --map-reef: #b8e8ec;
+      --map-land: #f6f3ea;
+      --map-park: #dcecd9;
+      --map-road: #dfd8ca;
+      --map-label: #49525a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121518;
+        --surface: #1b1f24;
+        --surface-soft: #23282f;
+        --border: #2e343d;
+        --border-soft: #272c34;
+        --text: #eef1f4;
+        --text-muted: #9aa3ad;
+        --brand: #2dd4bf;
+        --brand-fg: #0b2421;
+        --brand-soft: rgba(45, 212, 191, 0.14);
+        --ok: #4ade80;
+        --ok-soft: rgba(74, 222, 128, 0.13);
+        --warn: #fbbf24;
+        --warn-soft: rgba(251, 191, 36, 0.14);
+        --err: #f87171;
+        --err-soft: rgba(248, 113, 113, 0.14);
+        --blue: #60a5fa;
+        --blue-soft: rgba(96, 165, 250, 0.14);
+        --orange: #fb923c;
+        --orange-soft: rgba(251, 146, 60, 0.14);
+        --plum: #a78bfa;
+        --plum-soft: rgba(167, 139, 250, 0.14);
+        --nav-bg: rgba(18, 21, 24, 0.91);
+        --shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+        --map-sea: #132833;
+        --map-reef: #153c47;
+        --map-land: #1f242b;
+        --map-park: #1d3329;
+        --map-road: #303742;
+        --map-label: #9aa6b2;
+      }
+    }
+
+    [data-theme="dark"] {
+      --bg: #121518;
+      --surface: #1b1f24;
+      --surface-soft: #23282f;
+      --border: #2e343d;
+      --border-soft: #272c34;
+      --text: #eef1f4;
+      --text-muted: #9aa3ad;
+      --brand: #2dd4bf;
+      --brand-fg: #0b2421;
+      --brand-soft: rgba(45, 212, 191, 0.14);
+      --ok: #4ade80;
+      --ok-soft: rgba(74, 222, 128, 0.13);
+      --warn: #fbbf24;
+      --warn-soft: rgba(251, 191, 36, 0.14);
+      --err: #f87171;
+      --err-soft: rgba(248, 113, 113, 0.14);
+      --blue: #60a5fa;
+      --blue-soft: rgba(96, 165, 250, 0.14);
+      --orange: #fb923c;
+      --orange-soft: rgba(251, 146, 60, 0.14);
+      --plum: #a78bfa;
+      --plum-soft: rgba(167, 139, 250, 0.14);
+      --nav-bg: rgba(18, 21, 24, 0.91);
+      --shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+      --map-sea: #132833;
+      --map-reef: #153c47;
+      --map-land: #1f242b;
+      --map-park: #1d3329;
+      --map-road: #303742;
+      --map-label: #9aa6b2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      margin: 0; padding: 0; background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 14px; line-height: 1.56; -webkit-font-smoothing: antialiased; scroll-behavior: smooth;
+    }
+
+    button, input, textarea, select { font-family: inherit; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 40; background: var(--nav-bg);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); padding-top: env(safe-area-inset-top, 0px);
+    }
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 0; }
+    .brand-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand-icon {
+      width: 37px; height: 37px; border-radius: 11px; background: var(--brand); color: var(--brand-fg);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .brand-title { font-size: 15px; font-weight: 700; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-sub { font-size: 11.5px; color: var(--text-muted); margin: 1px 0 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .topbar-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+    .pill-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 11px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--surface);
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: transform 0.12s ease, border-color 0.15s ease;
+    }
+    .pill-btn:hover { border-color: var(--brand); }
+    .pill-btn:active { transform: scale(0.96); }
+    .pill-btn.primary { background: var(--brand); color: var(--brand-fg); border-color: transparent; }
+    .pill-btn.gmap { background: var(--blue-soft); color: var(--blue); border-color: transparent; }
+
+    .desktop-nav { display: flex; gap: 6px; overflow-x: auto; padding: 0 0 10px; scrollbar-width: none; }
+    .desktop-nav::-webkit-scrollbar { display: none; }
+    .nav-tab {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--text-muted);
+      font-size: 12.5px; font-weight: 600; white-space: nowrap; cursor: pointer;
+    }
+    .nav-tab.active { background: var(--brand); color: var(--brand-fg); border-color: transparent; }
+
+    .bottom-bar {
+      display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+      background: var(--nav-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border); padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .bottom-bar-inner { display: grid; grid-template-columns: repeat(5, 1fr); height: 54px; }
+    .bottom-tab {
+      border: none; background: transparent; color: var(--text-muted);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2px; font-size: 10.5px; font-weight: 600; cursor: pointer; padding: 4px 2px;
+    }
+    .bottom-tab.active { color: var(--brand); }
+
+    @media (max-width: 680px) {
+      .bottom-bar { display: block; }
+      .main-wrap { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important; }
+      .hide-xs { display: none; }
+    }
+
+    .main-wrap { padding: 16px 0 60px; }
+    .stack { display: flex; flex-direction: column; gap: 15px; }
+    .stack-sm { display: flex; flex-direction: column; gap: 10px; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 17px; box-shadow: var(--shadow); }
+    .soft-box { background: var(--surface-soft); border: 1px solid var(--border-soft); border-radius: 12px; padding: 12px 14px; }
+
+    /* Interactive Map Canvas Styles */
+    .map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .map-layout { grid-template-columns: 1fr; }
+    }
+
+    .map-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10.5;
+      min-height: 330px;
+      background: var(--map-sea);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: grab;
+      box-shadow: var(--shadow);
+    }
+    .map-stage:active { cursor: grabbing; }
+
+    .map-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-zoom-controls {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 10;
+    }
+    .zoom-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    .zoom-btn:active { transform: scale(0.94); }
+
+    .map-legend {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 10px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      pointer-events: none;
+    }
+    .legend-dot { width: 9px; height: 9px; border-radius: 99px; display: inline-block; margin-right: 3px; vertical-align: middle; }
+
+    .pin-group { cursor: pointer; transition: opacity 0.2s ease; }
+    .pin-group.dimmed { opacity: 0.28; }
+    .pin-pulse {
+      animation: pinPulse 1.8s infinite ease-out;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+    @keyframes pinPulse {
+      0% { transform: scale(0.9); opacity: 0.85; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+    .route-dash {
+      stroke-dasharray: 7 5;
+      animation: dashFlow 18s linear infinite;
+    }
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -240; }
+    }
+
+    .route-card {
+      text-align: left; background: var(--surface); border: 2px solid var(--border);
+      border-radius: 16px; padding: 15px; cursor: pointer;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
+      transition: all 0.16s ease;
+    }
+    .route-card:hover { border-color: var(--brand); }
+    .route-card.selected { border-color: var(--brand); background: var(--brand-soft); }
+
+    .callout { border-radius: 12px; padding: 12px 14px; font-size: 12.5px; line-height: 1.6; }
+    .callout-brand { background: var(--brand-soft); }
+    .callout-warn { background: var(--warn-soft); }
+    .callout-ok { background: var(--ok-soft); }
+    .callout-err { background: var(--err-soft); }
+    .callout-blue { background: var(--blue-soft); }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+
+    @media (max-width: 780px) { .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 600px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card { padding: 14px; border-radius: 14px; }
+    }
+
+    .h2 { font-size: 17px; font-weight: 700; margin: 0; line-height: 1.35; }
+    .h3 { font-size: 15px; font-weight: 700; margin: 0; line-height: 1.35; }
+    .muted { color: var(--text-muted); }
+    .text-xs { font-size: 12.5px; }
+    .text-xxs { font-size: 11.5px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap;
+    }
+    .b-brand { background: var(--brand-soft); color: var(--brand); }
+    .b-ok { background: var(--ok-soft); color: var(--ok); }
+    .b-warn { background: var(--warn-soft); color: var(--warn); }
+    .b-err { background: var(--err-soft); color: var(--err); }
+    .b-blue { background: var(--blue-soft); color: var(--blue); }
+    .b-orange { background: var(--orange-soft); color: var(--orange); }
+    .b-plum { background: var(--plum-soft); color: var(--plum); }
+    .b-soft { background: var(--surface-soft); color: var(--text-muted); }
+
+    .flex-between { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .flex-row { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+
+    .day-strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .day-strip::-webkit-scrollbar { display: none; }
+    .day-pill {
+      padding: 8px 13px; border-radius: 12px; border: 1px solid var(--border);
+      background: var(--surface); text-align: left; flex-shrink: 0; cursor: pointer;
+    }
+    .day-pill.active { background: var(--brand); color: var(--brand-fg); border-color: transparent; }
+
+    .commute-chain {
+      display: flex; align-items: center; gap: 6px; overflow-x: auto;
+      padding: 10px 12px; background: var(--surface-soft); border: 1px solid var(--border-soft);
+      border-radius: 12px; scrollbar-width: none;
+    }
+    .commute-chain::-webkit-scrollbar { display: none; }
+    .chain-node {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 9px;
+      font-size: 12px; font-weight: 700; white-space: nowrap; flex-shrink: 0;
+    }
+    .chain-num {
+      width: 19px; height: 19px; border-radius: 99px; background: var(--brand); color: var(--brand-fg);
+      font-size: 11px; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .chain-leg {
+      display: inline-flex; flex-direction: column; align-items: center;
+      padding: 0 6px; font-size: 10.5px; color: var(--text-muted); white-space: nowrap; flex-shrink: 0;
+    }
+    .chain-arrow { color: var(--brand); font-weight: 700; letter-spacing: -1px; }
+
+    .map-embed-wrap { margin-top: 8px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface-soft); }
+    .map-iframe { width: 100%; height: 225px; border: 0; display: block; }
+
+    .check-btn {
+      width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid var(--border);
+      background: transparent; display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0; cursor: pointer; margin-top: 2px;
+    }
+    .check-btn.done { background: var(--ok); border-color: var(--ok); color: #fff; }
+
+    .textarea, .text-input {
+      width: 100%; background: var(--surface-soft); border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px 12px; font-size: 13px; outline: none;
+    }
+    .textarea:focus, .text-input:focus { border-color: var(--brand); }
+    .textarea { min-height: 70px; resize: vertical; }
+
+    .seg-btn {
+      padding: 6px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;
+    }
+    .seg-btn.active { background: var(--brand); color: var(--brand-fg); border-color: transparent; }
+
+    .weather-bar { display: inline-flex; background: var(--surface-soft); border: 1px solid var(--border); border-radius: 12px; padding: 3px; gap: 3px; }
+    .w-btn { border: none; background: transparent; padding: 6px 11px; border-radius: 9px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .w-btn.active { background: var(--surface); color: var(--brand); box-shadow: var(--shadow); }
+
+    .progress-track { width: 100%; height: 9px; border-radius: 999px; background: var(--surface-soft); overflow: hidden; border: 1px solid var(--border-soft); }
+    .progress-fill { height: 100%; background: var(--brand); border-radius: 999px; transition: width 0.25s ease; }
+
+    .check-row {
+      display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px;
+      border-radius: 12px; background: var(--surface); border: 1px solid var(--border); cursor: pointer;
+    }
+    .check-row input[type="checkbox"] { width: 17px; height: 17px; margin-top: 2px; accent-color: var(--brand); flex-shrink: 0; }
+    .strike { text-decoration: line-through; color: var(--text-muted); }
+
+    .price-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .price-table th, .price-table td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--border-soft); }
+    .price-table th { font-weight: 700; color: var(--text-muted); font-size: 11.5px; background: var(--surface-soft); }
+
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 60; background: rgba(0, 0, 0, 0.5);
+      display: none; align-items: center; justify-content: center; padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-panel {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+      width: 100%; max-width: 580px; max-height: 85vh;
+      display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+    .modal-head { padding: 14px 18px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .modal-body { padding: 16px 18px; overflow-y: auto; flex: 1; }
+    .modal-foot { padding: 12px 18px; border-top: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+
+    .fade-in { animation: fadeIn 0.2s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .icon { width: 16px; height: 16px; display: inline-block; vertical-align: middle; flex-shrink: 0; }
+    .icon-sm { width: 14px; height: 14px; }
+    .icon-lg { width: 19px; height: 19px; }
+    ul.clean { margin: 6px 0 0; padding-left: 16px; }
+    ul.clean li { margin-bottom: 5px; }
+    .budget-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--border-soft); font-size: 13px; }
+    .budget-row:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand-row">
+          <div class="brand-icon" aria-hidden="true">
+            <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+          </div>
+          <div style="min-width:0;">
+            <h1 class="brand-title" id="top-route-title">澳洲9日 v4.0 · 互动地图版</h1>
+            <p class="brand-sub">可缩放地图 · 景点通勤双币价格 · 晴雨双版 · 离线可用</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="pill-btn" onclick="openInstallModal()">📲 装到手机</button>
+          <button class="pill-btn hide-xs" onclick="toggleTheme()" title="切换深浅色">🌓</button>
+          <button class="pill-btn primary" onclick="openSummaryModal()">导出摘要</button>
+        </div>
+      </div>
+      <nav class="desktop-nav" id="desktop-nav" aria-label="主导航"></nav>
+    </div>
+  </header>
+
+  <main class="container main-wrap" id="app-root"></main>
+  <nav class="bottom-bar" id="bottom-bar" aria-label="手机底部导航"></nav>
+
+  <!-- Summary Modal -->
+  <div class="modal-backdrop" id="summary-modal" onclick="if(event.target===this) closeSummaryModal()">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <div class="h3">当前行程+预算+导航摘要（一键发微信）</div>
+          <div class="text-xxs muted">含每日通勤价格、门票明细与路线概览</div>
+        </div>
+        <button class="pill-btn" onclick="closeSummaryModal()">关闭</button>
+      </div>
+      <div class="modal-body">
+        <textarea id="summary-ta" class="textarea mono" style="height:280px;font-size:12px;" readonly></textarea>
+      </div>
+      <div class="modal-foot">
+        <span id="copy-tip" class="text-xs" style="color:var(--ok);font-weight:600;opacity:0;transition:opacity 0.2s;">✅ 已复制！</span>
+        <button class="pill-btn primary" onclick="copySummary()">一键复制全文</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Install Guide Modal -->
+  <div class="modal-backdrop" id="install-modal" onclick="if(event.target===this) closeInstallModal()">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <div class="h3">📲 添加到 iPhone 桌面 & 互动地图说明</div>
+          <div class="text-xxs muted">国内免翻墙秒开互动地图 · 落地澳洲一键唤起 Google Maps</div>
+        </div>
+        <button class="pill-btn" onclick="closeInstallModal()">关闭</button>
+      </div>
+      <div class="modal-body stack-sm text-xs">
+        <div class="callout callout-brand">
+          <strong>🌟 添加到 iPhone 桌面步骤：</strong>
+          <ol style="margin:6px 0 0;padding-left:18px;line-height:1.7;">
+            <li>将本文件改名 <code>index.html</code> 放入文件夹，拖进免费托管 <strong>app.netlify.com/drop</strong> 生成链接发微信；</li>
+            <li>iPhone 微信点开 → 右上角 <code>...</code> → <strong>在默认浏览器 (Safari) 打开</strong>；</li>
+            <li>点 Safari 底部 <strong>分享按钮（⬆️）</strong> → <strong>添加到主屏幕</strong>！</li>
+          </ol>
+        </div>
+        <div class="soft-box">
+          <strong>🗺️ 互动地图怎么玩：</strong>
+          <p style="margin:6px 0 0;" class="muted">本页内置了<strong>完全离线的可拖拽缩放矢量地图</strong>（含悉尼海港、墨尔本免费电车区绿色边界、大洋路、凯恩斯与外大堡礁），在国内不开 VPN 或飞机断网都能丝滑缩放点击！到了澳洲，点详情卡里的蓝色按钮即可秒跳进 <strong>Google Maps App</strong> 实时导航！</p>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <span class="text-xxs muted">汇率参考：1 AUD ≈ 4.8 RMB</span>
+        <button class="pill-btn primary" onclick="closeInstallModal()">明白啦</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. iOS Icon Generator
+    (function createIosAppIcon() {
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.width = 180; canvas.height = 180;
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        var grad = ctx.createLinearGradient(0, 0, 180, 180);
+        grad.addColorStop(0, '#0f766e'); grad.addColorStop(1, '#115e59');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, 180, 180);
+        ctx.fillStyle = 'rgba(255,255,255,0.95)';
+        ctx.beginPath(); ctx.moveTo(32, 122); ctx.quadraticCurveTo(46, 60, 86, 50); ctx.quadraticCurveTo(72, 90, 74, 122); ctx.closePath(); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(68, 122); ctx.quadraticCurveTo(86, 46, 134, 40); ctx.quadraticCurveTo(114, 88, 118, 122); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,0.75)';
+        ctx.beginPath(); ctx.moveTo(112, 122); ctx.quadraticCurveTo(130, 76, 152, 72); ctx.quadraticCurveTo(142, 100, 144, 122); ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 4; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(28, 132); ctx.lineTo(152, 132); ctx.stroke();
+        ctx.fillStyle = '#ffffff'; ctx.font = 'bold 20px -apple-system, sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('AU MAP', 90, 158);
+        var link = document.getElementById('ios-touch-icon');
+        if (link) link.href = canvas.toDataURL('image/png');
+      } catch (e) {}
+    })();
+
+    // 2. State Management
+    var STORAGE_KEY = 'au_trip_v4_imap_2027';
+    var memStore = {};
+    function loadState() {
+      var defaults = {
+        activeTab: 'imap', // Open directly on the new Interactive Map or remember user tab!
+        selectedRoute: 'mel', // 'nsw' | 'mel' | 'reef'
+        selectedDay: 5,
+        weatherMode: 'both',
+        // Interactive Map state
+        mapRegion: 'sydney', // 'australia' | 'sydney' | 'melbourne' | 'cairns'
+        mapCatFilter: 'all', // 'all' | 'spot' | 'hotel' | 'theatre' | 'food'
+        mapDayFilter: 0, // 0 = all days, 1..8 = specific day route highlight
+        selectedPinId: 'p_opera',
+        showPinGoogleEmbed: false,
+        hotelCity: 'sydney',
+        foodSubTab: 'food',
+        theme: 'auto',
+        budgetHotelTier: 'value',
+        budgetFoodTier: 'balanced',
+        budgetMusicalCount: 1,
+        openMaps: {},
+        doneSpots: {},
+        checkedPrep: {},
+        wishlistFood: {},
+        shoppingChecked: {},
+        dayNotes: {},
+        customPrepItems: []
+      };
+      try {
+        var raw = window.localStorage.getItem(STORAGE_KEY);
+        if (raw) return Object.assign({}, defaults, JSON.parse(raw));
+      } catch (e) {
+        if (memStore[STORAGE_KEY]) return Object.assign({}, defaults, memStore[STORAGE_KEY]);
+      }
+      return defaults;
+    }
+    var state = loadState();
+
+    // Pan & Zoom transient viewport state [x, y, width, height] inside 800x500 coordinate space
+    var mapViewBox = { x: 0, y: 0, w: 800, h: 500 };
+    function resetMapZoom(noRender) {
+      mapViewBox = { x: 0, y: 0, w: 800, h: 500 };
+      if (!noRender) applyViewBoxToDom();
+    }
+
+    function applyTheme() {
+      if (state.theme === 'dark' || state.theme === 'light') document.documentElement.setAttribute('data-theme', state.theme);
+      else document.documentElement.removeAttribute('data-theme');
+    }
+    applyTheme();
+    function toggleTheme() { state.theme = (state.theme === 'dark') ? 'light' : 'dark'; applyTheme(); saveState(); }
+    function saveState() {
+      try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+      catch (e) { memStore[STORAGE_KEY] = JSON.parse(JSON.stringify(state)); }
+    }
+
+    function gmapSearchUrl(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+    function gmapDirUrl(o, d, m) { return 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(o) + '&destination=' + encodeURIComponent(d) + '&travelmode=' + (m || 'transit'); }
+    function gmapMultiStopUrl(baseOrigin, spots, mode) {
+      if (!spots || !spots.length) return gmapSearchUrl(baseOrigin);
+      var valid = spots.map(function (s) { return s.mapQuery; }).filter(Boolean);
+      if (!valid.length) return gmapSearchUrl(baseOrigin);
+      if (valid.length === 1) return gmapDirUrl(baseOrigin, valid[0], mode || 'transit');
+      var dest = valid[valid.length - 1];
+      var wps = valid.slice(0, valid.length - 1).join('|');
+      return 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(baseOrigin) +
+        '&destination=' + encodeURIComponent(dest) + (wps ? '&waypoints=' + encodeURIComponent(wps) : '') + '&travelmode=' + (mode || 'transit');
+    }
+    function gmapEmbedSrc(q) { return 'https://maps.google.com/maps?q=' + encodeURIComponent(q) + '&t=m&z=15&output=embed&iwloc=near'; }
+
+    // =========================================================================
+    // 3. Interactive Map Pin & Route Geometry Database (4 Detailed Regions)
+    // =========================================================================
+    var MAP_PINS = {
+      australia: [
+        { id: 'au_syd', x: 615, y: 342, cat: 'hotel', label: '悉尼 Sydney (往返进出港)', price: '11–21°C 早春晴爽', commute: '南航CZ3071直达 / CZ326返程', desc: '全澳第一大城市与你们的国际往返枢纽！不管选哪条路线，最后 5–8 晚都在悉尼看歌剧院、音乐剧与扫货退税。点击下方按钮可放大进入【悉尼互动详图】！', mapQuery: 'Sydney NSW Australia', zoomTarget: 'sydney' },
+        { id: 'au_mel', x: 472, y: 432, cat: 'spot', label: '墨尔本 Melbourne', price: '飞1.5h · 单程约¥580', commute: '悉尼飞墨尔本每半小时一班', desc: '南半球文艺咖啡与音乐剧之都（路线B核心站）！拥有免费电车区、维妈市场、NGV美术馆与澳洲首演新剧。点击可放大进入【墨尔本&大洋路详图】！', mapQuery: 'Melbourne VIC Australia', zoomTarget: 'melbourne' },
+        { id: 'au_gor', x: 382, y: 448, cat: 'spot', label: '十二门徒岩 Twelve Apostles', price: '精品小团约¥680 · 免门票', commute: '从墨尔本CBD小团往返1日', desc: '南大洋惊涛骇浪中的巨型海蚀柱奇观！路线B第3天包小团前往。', mapQuery: 'Twelve Apostles VIC Australia', zoomTarget: 'melbourne' },
+        { id: 'au_cns', x: 548, y: 105, cat: 'spot', label: '凯恩斯 & 外大堡礁 Cairns', price: '20–29°C 旱季巅峰 · 飞3h', commute: '悉尼直飞3h · 酒店仅悉尼半价', desc: '9月是去大堡礁全年最完美的月份（旱季无雨、无毒水母、能见度最高）！路线C飞这里住3晚看珊瑚海龟+热带雨林。点击放大【凯恩斯&大堡礁详图】！', mapQuery: 'Cairns QLD Australia', zoomTarget: 'cairns' },
+        { id: 'au_bm', x: 560, y: 325, cat: 'spot', label: '蓝山国家公园 Blue Mountains', price: '火车周五六日封顶仅¥46！', commute: '悉尼Central坐火车2h直达', desc: '路线A核心自然奇观！回音谷三姐妹峰与52°森林矿山小火车，不坐飞机也能看世界自然遗产！', mapQuery: 'Echo Point Katoomba NSW', zoomTarget: 'sydney' },
+        { id: 'au_ps', x: 632, y: 298, cat: 'spot', label: '史蒂芬斯港 Port Stephens', price: '海豚+滑沙小团约¥650', commute: '悉尼向北车程2.5h', desc: '路线A奇观！一半蔚蓝大海追野生海豚，一半金色海岸大沙漠无限滑沙！', mapQuery: 'Anna Bay Sand Dunes NSW', zoomTarget: 'sydney' }
+      ],
+
+      sydney: [
+        { id: 'p_th', x: 382, y: 318, cat: 'hotel', label: '🏨 Town Hall / QVB (首推住宿&扫货中心)', price: '四星/公寓人均 ¥550–790/晚', commute: '轻轨L2/L3与火车核心枢纽 · Uber去机场20m', desc: '最适合两个女生连住 5–8 晚的安全核心！楼下 300 米内集齐 QVB 百年商场、Pitt St 步行街、David Jones、Chemist Warehouse 药房和超市，买重了 3 分钟送回房间！', mapQuery: 'Queen Victoria Building, 455 George St, Sydney NSW', dayRef: 8 },
+        { id: 'p_opera', x: 432, y: 196, cat: 'spot', label: '悉尼歌剧院 & Opera Bar', price: '中文导览 AUD $50(≈¥240)', commute: 'Town Hall坐轻轨L2/L3 8分钟到环形码头', desc: '世界文化遗产白帆建筑！上午参加1h官方中文导览参观内部音乐厅，傍晚16:30在底层临海 Opera Bar 吹海风看海港大桥粉紫日落（小心海鸥抢薯条！）。', mapQuery: 'Sydney Opera House, Sydney NSW', dayRef: 5 },
+        { id: 'p_mrs', x: 495, y: 218, cat: 'spot', label: '皇家植物园 & 麦考利夫人座椅', price: '免费开放 AUD $0', commute: '从歌剧院沿水边平路慢走22分钟', desc: '悉尼封面明信片唯一神级机位！能把「悉尼歌剧院 + 海港大桥」左右黄金比例同框拍下！9月早春繁花盛开。', mapQuery: 'Mrs Macquaries Chair, Sydney NSW', dayRef: 5 },
+        { id: 'p_cq', x: 392, y: 235, cat: 'hotel', label: '环形码头 Circular Quay (渡轮总站)', price: '海景酒店人均 ¥860+/晚', commute: '去动物园(4号码头) / 曼利(3号码头)起点', desc: '悉尼所有海港渡轮心脏！预算充裕也可住这片区，安全分 9.8/10。旁边还有免费的当代艺术博物馆 MCA（雨天看歌剧院好去处）。', mapQuery: 'Circular Quay, Sydney NSW', dayRef: 5 },
+        { id: 'p_rocks', x: 368, y: 204, cat: 'spot', label: '岩石区 & 周六市集 + 海港大桥步道', price: '免费逛集 AUD $0', commute: '环形码头西侧步行4分钟', desc: '1788年悉尼发源地鹅卵石古街，周六周日有 200+ 白色帐篷手作市集（买香薰、原创明信片超棒），还可免费走上海港大桥人行步道俯瞰歌剧院！', mapQuery: 'The Rocks Markets, George St, The Rocks NSW', dayRef: 8 },
+        { id: 'p_obs', x: 335, y: 216, cat: 'spot', label: '天文台山公园 Observatory Hill', price: '免费日落草坪 AUD $0', commute: '岩石区步行上坡8分钟', desc: '本地情侣私藏的海港大桥180°日落山坡！坐在百年无花果树下看大桥镀上金边，浪漫到极致（17:10前到）。', mapQuery: 'Observatory Hill Park, Millers Point NSW', dayRef: 7 },
+        { id: 'p_zoo', x: 545, y: 128, cat: 'spot', label: '塔龙加动物园 Taronga Zoo', price: '网购票 AUD $46.8(≈¥225)', commute: '环形码头4号码头乘F2渡轮12分钟', desc: '全世界风景最好的动物园——长颈鹿与考拉背后就是悉尼歌剧院！下船坐238接驳巴士到山顶正门一路下坡逛最省腿！周五去船费封顶$9.65！', mapQuery: 'Taronga Zoo Sydney, Mosman NSW', dayRef: 7 },
+        { id: 'p_manly', x: 705, y: 95, cat: 'spot', label: '曼利海滩 Manly & Shelly Beach', price: '海滩免费 · 周日渡轮封顶$9.65', commute: '环形码头3号码头乘F1双层大渡轮30m', desc: '花不到¥46解锁百万级悉尼港巡游！曼利海滩松林步道连着静谧果冻海谢利湾，松弛感拉满！', mapQuery: 'Manly Beach, NSW 2095', dayRef: 2 },
+        { id: 'p_bondi', x: 692, y: 342, cat: 'spot', label: '邦迪海滩 & Icebergs 冰山泳池', price: '步道免费 · 进泳池 AUD $10', commute: 'T4火车12m到Bondi Jct换333巴士15m', desc: '南太平洋冲浪圣地与白色悬崖无边泳池！顺着悬崖步道往南走 2.5km 精华段到 Bronte 海滩（9月常能看到鲸鱼喷水），还能吃 Bills 云朵松饼！', mapQuery: 'Bondi Icebergs Pool, Bondi Beach NSW', dayRef: 6 },
+        { id: 'p_bronte', x: 675, y: 408, cat: 'spot', label: '布朗特海滩 Bronte (悬崖步道终点)', price: '免费 AUD $0', commute: '走完2.5km海景栈道在此坐379巴士回城', desc: '不用硬走6km全程，走到这里刚好拍完最美悬崖海湾，轻松坐车回市区逛美术馆！', mapQuery: 'Bronte Beach, NSW', dayRef: 6 },
+        { id: 'p_agnsw', x: 472, y: 278, cat: 'spot', label: '新州美术馆 AGNSW & 圣玛丽大教堂', price: '常设展与大教堂全免 AUD $0', commute: 'Martin Place / St James站步行7分钟', desc: '全新SANAA纯白玻璃北馆+地下二战油罐艺术展厅+古典南馆，晴天雨天都好逛！旁边就是哥特双塔圣玛丽大教堂与海德公园。', mapQuery: 'Art Gallery of New South Wales, Sydney NSW', dayRef: 6 },
+        { id: 'p_dh', x: 308, y: 312, cat: 'food', label: '达令港 Darling Harbour (水族馆/猪肋排)', price: '夜景烟花免费 · 室内双馆雨天备选', commute: '从Town Hall步行8分钟过桥即达', desc: '水边餐厅云集（Hurricane\'s Grill 碳烤猪肋排）、周六常有免费烟花；也是雨天室内王牌备选（SEA LIFE水族馆 + WILD LIFE室内考拉园）！', mapQuery: 'Cockle Bay Wharf, Darling Harbour NSW', dayRef: 6 },
+        { id: 'p_fish', x: 228, y: 328, cat: 'food', label: '新悉尼鱼市场 (2026全新波浪地标)', price: '免费入场 · 海鲜拼盘人均¥180+', commute: 'L1轻轨至Fish Market站 / 打车10m', desc: '2026年全新落成的巨型波浪木屋顶海鲜市场，干净现代，现开岩蚝、海胆、刺身与芝士焗澳龙比餐厅便宜一半！', mapQuery: 'Sydney Fish Market, Bridge Rd, Glebe NSW', dayRef: 7 },
+        { id: 'p_capitol', x: 368, y: 372, cat: 'theatre', label: '🎭 Capitol 剧院 (《帕丁顿熊》首演) & 唐人街', price: '周中好座约 AUD $130–185', commute: 'Town Hall步行8分钟 / 轻轨Capitol Sq站', desc: '2027年9月《Paddington The Musical》澳洲首演剧院！紧挨唐人街与 World Square，看完剧散步回酒店超近！', mapQuery: 'Capitol Theatre, 13 Campbell St, Haymarket NSW', dayRef: 5 },
+        { id: 'p_usyd', x: 222, y: 405, cat: 'spot', label: '悉尼大学哈利波特主楼 Quadrangle', price: '免费开放 AUD $0', commute: 'Town Hall乘422/423/428巴士12分钟', desc: '1850年牛津哥特风砂岩四方庭院，霍格沃茨本院既视感，怎么拍都是英伦大片！', mapQuery: 'The Quadrangle, University of Sydney NSW', dayRef: 8 },
+        { id: 'p_pad', x: 518, y: 355, cat: 'food', label: '帕丁顿复古街区 & 罗马水库花园', price: '免费开放 AUD $0', commute: '333路巴士18分钟直达Oxford St', desc: '19世纪铸铁雕花阳台联排别墅、本土设计师买手店与红砖下沉水库花园。', mapQuery: 'Paddington Reservoir Gardens, Paddington NSW', dayRef: 2 },
+        { id: 'p_sydair', x: 342, y: 468, cat: 'spot', label: '✈️ 悉尼国际/国内机场 (SYD + TRS退税)', price: '2人拼Uber整车约 AUD $50', commute: 'Uber 20m直达Town Hall（别买贵火车票！）', desc: '9/19返程07:00到T1：托运液体值机前先找ABF海关盖章，过安检后去Heinemann右侧TRS扫码退税！', mapQuery: 'Sydney Airport Terminal 1', dayRef: 9 },
+        { id: 'p_bm', x: 88, y: 255, cat: 'spot', label: '⛰️ 蓝山三姐妹峰 & Scenic World (西郊2h)', price: '缆车通票 AUD $64 · 周五火车$9.65封顶', commute: 'Central乘BMT双层火车2h至Katoomba', desc: '世界自然遗产（路线A Day3）！看准晴天刷信用卡坐火车去，回音谷俯瞰三姐妹峰+52°森林矿车+卢拉童话小镇！', mapQuery: 'Scenic World, Katoomba NSW', dayRef: 3 },
+        { id: 'p_ps', x: 122, y: 92, cat: 'spot', label: '🐬 史蒂芬斯港海豚+沙漠滑沙 (北郊2.5h)', price: '全包一日团约 AUD $145(≈¥695)', commute: 'CBD集合乘一日小团往返', desc: '路线A Day4奇观！出海追140+野生宽吻海豚，四驱车冲上安娜湾40米高海岸大沙漠滑沙！', mapQuery: 'Anna Bay Sand Dunes, NSW', dayRef: 4 }
+      ],
+
+      melbourne: [
+        { id: 'm_hotel', x: 512, y: 235, cat: 'hotel', label: '🏨 Collins / Flinders St (CBD首推住宿核心)', price: '高分四星人均 ¥470–745/晚', commute: '位于绿色免费电车区正中心 · 电车$0', desc: '墨尔本最安全热闹的欧式街区，出门坐任何电车全免费，大洋路小团就在楼下圣保罗座堂接人，步行看音乐剧！', mapQuery: 'Collins Street, Melbourne VIC', dayRef: 1 },
+        { id: 'm_sc', x: 362, y: 205, cat: 'hotel', label: '🏨 Southern Cross 南十字星站 (SkyBus终点)', price: '四星人均 ¥430–650/晚', commute: '墨尔本机场SkyBus 30m直达零换乘', desc: '拖大行李箱最省力的备选住宿区（选车站东侧往市区方向），同样在免费电车区内！', mapQuery: 'Southern Cross Station, Melbourne VIC', dayRef: 1 },
+        { id: 'm_flinders', x: 518, y: 274, cat: 'spot', label: '弗林德斯街车站 · 圣保罗座堂 · 涂鸦巷', price: '全部免费 AUD $0', commute: '免费电车区核心 · 步行5分钟全逛完', desc: '1910年鹅黄色圆顶车站、哥特教堂、周杰伦同款 Hosier Lane 涂鸦巷与联邦广场（雨天进免费 ACMI 电影互动馆！）。', mapQuery: 'Flinders Street Railway Station, Melbourne VIC', dayRef: 1 },
+        { id: 'm_sb', x: 462, y: 325, cat: 'food', label: '雅拉河南岸 Southbank 夜景餐厅带', price: '河景夜景免费 · 晚餐人均¥120–240', commute: '从弗林德斯街走过王子桥5分钟', desc: '河水倒映CBD摩天楼璀璨灯火，整点在Crown外还能看喷火秀！', mapQuery: 'Southbank Promenade, Southbank VIC', dayRef: 1 },
+        { id: 'm_qvm', x: 428, y: 86, cat: 'food', label: '维多利亚女王市场 QVM (周日必逛)', price: '免费入场 · 热果酱甜甜圈$10/袋', commute: '19/57/59路免费电车直达 ($0)', desc: '南半球最大百年市场（周一周三休市，周日去最热闹！），熟食大厅现开生蚝+70年老餐车滚烫果酱甜甜圈，大棚遮雨晴雨皆宜！', mapQuery: 'Queen Victoria Market, Melbourne VIC', dayRef: 2 },
+        { id: 'm_slv', x: 522, y: 122, cat: 'spot', label: '维多利亚州立图书馆 & Melbourne Central', price: '完全免费 AUD $0', commute: '从维妈步行9分钟 / Swanston免费电车', desc: '上6楼俯拍绝美八角形白穹顶阅览室对称大片！过马路进商场看玻璃锥里的百年红砖子弹塔。', mapQuery: 'State Library Victoria, Melbourne VIC', dayRef: 2 },
+        { id: 'm_arcade', x: 492, y: 192, cat: 'food', label: '皇家拱廊 & 街区拱廊 + Lune 可颂 + Tipo 00', price: '拱廊免费 · 可颂$9 · 手工意面$34', commute: 'CBD免费电车区步行串联', desc: '两条19世纪玻璃顶马赛克宫廷拱廊（雨天避雨神器！），顺路买 Collins St 的世界第一可颂 Lune 和预约制神级黑松露意面 Tipo 00！', mapQuery: 'Block Arcade, 282 Collins St, Melbourne VIC', dayRef: 2 },
+        { id: 'm_comedy', x: 618, y: 132, cat: 'theatre', label: '🎭 Comedy 剧院 (《肉馅行动》澳洲首演)', price: '好座约 AUD $120–175', commute: 'CBD东北角 · 免费电车直达 ($0)', desc: '2027年9月奥利弗+托尼双料神剧《Operation Mincemeat》澳洲首演剧场！', mapQuery: 'Comedy Theatre, 240 Exhibition St, Melbourne VIC', dayRef: 2 },
+        { id: 'm_ngv', x: 548, y: 368, cat: 'spot', label: 'NGV 维多利亚国家美术馆 & Arts Centre 剧院', price: 'NGV常设展免费 $0 ·《返老还童》约$135', commute: '过王子桥步行8分钟($0) 或 电车1站($5.7)', desc: '摸哭泣水墙、躺看彩绘玻璃天幕与莫奈真迹！隔壁尖塔就是演 9/3–10/2《The Curious Case of Benjamin Button》的 Arts Centre！', mapQuery: 'National Gallery of Victoria, 180 St Kilda Rd, Melbourne VIC', dayRef: 2 },
+        { id: 'm_fitzroy', x: 668, y: 68, cat: 'food', label: 'Fitzroy 复古买手街 & 墨尔本博物馆 (雨天备选)', price: '逛街免费 · 精品手冲咖啡$6.5', commute: '乘86路电车12分钟 (出免费区需刷卡)', desc: 'Day 4 若遇阴雨不去海滩，来这里喝冠军咖啡 Proud Mary、淘复古小店与逛南半球最大室内博物馆！', mapQuery: 'Gertrude Street, Fitzroy VIC', dayRef: 4 },
+        { id: 'm_brighton', x: 588, y: 455, cat: 'spot', label: '布莱顿彩虹小屋 Brighton Bathing Boxes', price: '免费开放 · 往返火车约 AUD $5.70', commute: 'Flinders站乘Sandringham线火车24分钟', desc: 'Day 4 晴天上午必拍！80多座撞色条纹袋鼠木屋排在洁白海滩上，少女心爆棚！', mapQuery: 'Brighton Bathing Boxes, Brighton VIC', dayRef: 4 },
+        { id: 'm_apollo', x: 185, y: 398, cat: 'spot', label: '大洋路拱门 · 小红帽灯塔 · 野生考拉 · 阿波罗湾', price: '含在精品小团费内 (约¥680–770)', commute: 'Day 3 周一错峰 12–16人奔驰小团', desc: '贴着南大洋悬崖飞驰，沿途看童话灯塔与桉树上的野生考拉，中午在阿波罗湾吃热腾腾扇贝派！', mapQuery: 'Apollo Bay VIC Australia', dayRef: 3 },
+        { id: 'm_12a', x: 76, y: 382, cat: 'spot', label: '十二门徒岩 & 洛克阿德大峡谷 (大洋路高光)', price: '免门票 $0 · 15m直升机可选 AUD $175', commute: '小团直达木栈道 · 傍晚走高速3h回城', desc: '南冰洋巨浪中的45米高海蚀柱群与翡翠色峭壁海湾！风极大记得穿连帽冲锋衣扎紧头发！', mapQuery: 'Twelve Apostles, Princetown VIC', dayRef: 3 }
+      ],
+
+      cairns: [
+        { id: 'c_hotel', x: 388, y: 272, cat: 'hotel', label: '🏨 凯恩斯滨海大道 & 免费无边泻湖 Lagoon', price: '四星海滨房人均仅 ¥385–575/晚！', commute: '凯恩斯机场打Uber 12分钟即达(人均¥52)', desc: '房价只有悉尼一半！楼下就是免费的珊瑚海无边泳池与夜市，步行6分钟直接上大堡礁游船！', mapQuery: 'Cairns Esplanade Lagoon, Cairns QLD', dayRef: 1 },
+        { id: 'c_prawn', x: 412, y: 312, cat: 'food', label: 'Prawn Star 码头海鲜渔船餐厅', price: '海鲜拼盘人均 AUD $38–50(≈¥185–240)', commute: '从酒店沿椰林海边走5分钟', desc: '停泊在游艇码头的真实木渔船！吹着25°C暖风剥冰镇大虎虾、生蚝与三文鱼，性价比巨高！', mapQuery: 'Prawn Star Cairns, Marlin Marina QLD', dayRef: 1 },
+        { id: 'c_wharf', x: 406, y: 354, cat: 'spot', label: 'Reef Fleet 大堡礁游船登船码头', price: '步行登船立省每人 $35 接送费！', commute: '从Esplanade南段酒店步行6分钟', desc: 'Day 2 早上睡到 07:45 溜达过来换登船牌，出发前往外大堡礁！', mapQuery: 'Reef Fleet Terminal, 1 Spence St, Cairns QLD', dayRef: 2 },
+        { id: 'c_reef', x: 668, y: 242, cat: 'spot', label: '🐠 外大堡礁摩尔礁海上大浮台 (Outer Reef)', price: '全包船票约 AUD $319(≈¥1,530含午餐浮潜)', commute: '豪华高速双体船约90分钟直达外海', desc: '9月旱季海水能见度20米+且无毒水母！不会游泳也能坐半潜艇、走海底玻璃舱、穿救生衣扶浮台看尼莫小丑鱼与大海龟！', mapQuery: 'Moore Reef, Great Barrier Reef QLD', dayRef: 2 },
+        { id: 'c_fitz', x: 535, y: 398, cat: 'spot', label: '翡翠岛 Fitzroy Island (大风备选玻璃海)', price: '往返船票约 AUD $95', commute: '码头乘船45分钟近岸避风岛屿', desc: '万一遇外海罕见强风时的绝佳避风玻璃海小岛备选！', mapQuery: 'Fitzroy Island QLD', dayRef: 2 },
+        { id: 'c_train', x: 334, y: 295, cat: 'spot', label: '凯恩斯火车站 (库兰达百年小火车起点)', price: '火车+Skyrail缆车联票 AUD $139(≈¥667)', commute: '酒店步行10分钟或打车5分钟', desc: 'Day 3 早上 09:30 登上1891年复古木质观光小火车向热带雨林峡谷进发！', mapQuery: 'Cairns Central Station, Cairns QLD', dayRef: 3 },
+        { id: 'c_kuranda', x: 138, y: 138, cat: 'spot', label: '🌲 库兰达雨林小镇 · 巴伦大瀑布 · Skyrail高空缆车', price: '考拉园门票 AUD $22 · 轻抚考拉拍照', commute: '上午小火车穿过瀑布上山 · 下午7.5km缆车滑翔下山', desc: '《阿凡达》灵感地亿万年雨林！火车大拐弯拍瀑布名场面，小镇考拉园近距离摸考拉，下午乘缆车在树冠上方俯瞰珊瑚海！', mapQuery: 'Kuranda Koala Gardens, Kuranda QLD', dayRef: 3 },
+        { id: 'c_air', x: 348, y: 162, cat: 'spot', label: '✈️ 凯恩斯机场 CNS (距市区仅6km!)', price: 'Uber整车仅 AUD $20–25(人均¥52)', commute: '打车12分钟闪电进城', desc: '全澳离市区最近最省钱的机场！Day 4 下午从这里飞回悉尼连住5晚。', mapQuery: 'Cairns Airport QLD', dayRef: 4 }
+      ]
+    };
+
+    // Day-by-Day Ordered Pin Sequences for Route Polyline Drawing on the Map!
+    var DAY_MAP_SEQUENCES = {
+      nsw: {
+        1: { region: 'sydney', pins: ['p_sydair', 'p_th', 'p_dh'] },
+        2: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_manly', 'p_pad'] },
+        3: { region: 'sydney', pins: ['p_th', 'p_bm'] },
+        4: { region: 'sydney', pins: ['p_th', 'p_ps'] },
+        5: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_opera', 'p_mrs', 'p_opera', 'p_capitol'] },
+        6: { region: 'sydney', pins: ['p_th', 'p_bondi', 'p_bronte', 'p_agnsw', 'p_th'] },
+        7: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_zoo', 'p_fish', 'p_rocks', 'p_obs'] },
+        8: { region: 'sydney', pins: ['p_th', 'p_usyd', 'p_rocks', 'p_th'] },
+        9: { region: 'sydney', pins: ['p_th', 'p_sydair'] }
+      },
+      mel: {
+        1: { region: 'melbourne', pins: ['m_sc', 'm_hotel', 'm_flinders', 'm_sb'] },
+        2: { region: 'melbourne', pins: ['m_hotel', 'm_qvm', 'm_slv', 'm_arcade', 'm_ngv', 'm_comedy'] },
+        3: { region: 'melbourne', pins: ['m_flinders', 'm_apollo', 'm_12a', 'm_hotel'] },
+        4: { region: 'melbourne', pins: ['m_flinders', 'm_brighton', 'm_sc'] },
+        5: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_opera', 'p_mrs', 'p_opera', 'p_capitol'] },
+        6: { region: 'sydney', pins: ['p_th', 'p_bondi', 'p_bronte', 'p_agnsw', 'p_th'] },
+        7: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_zoo', 'p_fish', 'p_rocks', 'p_obs'] },
+        8: { region: 'sydney', pins: ['p_th', 'p_usyd', 'p_rocks', 'p_th'] },
+        9: { region: 'sydney', pins: ['p_th', 'p_sydair'] }
+      },
+      reef: {
+        1: { region: 'cairns', pins: ['c_air', 'c_hotel', 'c_prawn'] },
+        2: { region: 'cairns', pins: ['c_hotel', 'c_wharf', 'c_reef', 'c_wharf'] },
+        3: { region: 'cairns', pins: ['c_hotel', 'c_train', 'c_kuranda', 'c_hotel'] },
+        4: { region: 'cairns', pins: ['c_hotel', 'c_air'] },
+        5: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_opera', 'p_mrs', 'p_opera', 'p_capitol'] },
+        6: { region: 'sydney', pins: ['p_th', 'p_bondi', 'p_bronte', 'p_agnsw', 'p_th'] },
+        7: { region: 'sydney', pins: ['p_th', 'p_cq', 'p_zoo', 'p_fish', 'p_rocks', 'p_obs'] },
+        8: { region: 'sydney', pins: ['p_th', 'p_usyd', 'p_rocks', 'p_th'] },
+        9: { region: 'sydney', pins: ['p_th', 'p_sydair'] }
+      }
+    };
+
+    // =========================================================================
+    // 4. Full Route Itinerary, Hotel, Musical, Food & Budget Data
+    // =========================================================================
+    var ROUTES_META = {
+      nsw: {
+        id: 'nsw', tag: '💰 省钱松弛王 · 0换酒店',
+        name: '路线 A：悉尼深度 + 周边奇观（蓝山 + 海豚滑沙 + 曼利）',
+        shortName: '悉尼+周边0换酒店',
+        hotelsSummary: '全程 0 换酒店（悉尼 Town Hall 连住 8 晚）',
+        flightsSummary: '0 趟澳洲内陆飞机（立省 ¥1,200+ 及机场折腾）',
+        estTotalRmb: '¥14,600 – ¥16,900 / 人（含已买国际机票！）',
+        weatherSep: '🌤️ 11–21°C 早春干爽阳光多，降雨少，体感最稳！',
+        bestFor: '不想折腾转机换酒店、想稳压预算在 1.5w 左右，同时看齐歌剧院、考拉、蓝山峡谷、大沙漠滑沙与野生海豚！',
+        domesticRmb: 0, toursRmb: 1650, localTransitRmb: 460
+      },
+      mel: {
+        id: 'mel', tag: '🌟 第一次必去经典双城',
+        name: '路线 B：悉尼(5晚) + 墨尔本 & 十二门徒(3晚)',
+        shortName: '悉尼+墨尔本+十二门徒',
+        hotelsSummary: '仅换 1 次酒店（墨尔本 CBD 3 晚 + 悉尼 5 晚）',
+        flightsSummary: '2 趟内陆短途 SYD↔MEL（航程1.5h，往返约 ¥1,150）',
+        estTotalRmb: '¥16,200 – ¥18,500 / 人（含已买国际机票！）',
+        weatherSep: '🌦️ 悉尼 11–21°C 晴暖；墨尔本 9–18°C 偏凉多变（配好晴雨双版）',
+        bestFor: '想一次集齐「悉尼歌剧院 + 十二门徒海岸奇观 + 墨尔本欧式街巷咖啡 + 双城首演音乐剧」！',
+        domesticRmb: 1150, toursRmb: 1120, localTransitRmb: 650
+      },
+      reef: {
+        id: 'reef', tag: '🐠 9月旱季最佳 · 28°C暖夏看海',
+        name: '路线 C：悉尼(5晚) + 凯恩斯大堡礁 & 库兰达雨林(3晚)',
+        shortName: '悉尼+凯恩斯大堡礁',
+        hotelsSummary: '仅换 1 次酒店（凯恩斯码头旁 3 晚 + 悉尼 5 晚）',
+        flightsSummary: '2 趟内陆飞机 SYD↔CNS（航程3h，往返约 ¥1,750）',
+        estTotalRmb: '¥17,800 – ¥19,900 / 人（卡在 2 万预算内！）',
+        weatherSep: '☀️ 凯恩斯 20–29°C 旱季巅峰！几乎无雨、无毒水母、水下最清！',
+        bestFor: '怕冷、向往玻璃海浮潜看珊瑚海龟与热带雨林！（选凯恩斯酒店仅悉尼半价，避开天价汉密尔顿岛！）',
+        domesticRmb: 1750, toursRmb: 2380, localTransitRmb: 500
+      }
+    };
+
+    var DAY_0_SHARED = {
+      day: 0, date: '9月10日 (周五)', city: '出发 · 深圳T3汇合',
+      baseHotelQuery: 'Shenzhen Baoan International Airport T3', travelMode: 'transit',
+      title: '重庆/上海飞深圳宝安 T3 汇合 · 18:55 同乘 CZ3071 直飞悉尼',
+      wakeTime: '白天各自出发', weatherTip: '机舱约20°C偏干冷，备薄外套',
+      dayCostSummary: '门票 ¥0 · 国际机票已付 (¥4,547)', hotel: '飞机上过夜（南航 CZ3071 宽体机）',
+      sunnySummary: '重庆 (CZ3466 11:45–13:55) 与上海浦东 (CZ6752 13:30–16:15) 在深圳 T3 汇合吃晚饭，18:55 同机飞悉尼！',
+      rainyPlan: '🌧️ 南航联程直挂票，即使遇雷雨航延也由南航全权保障改签。',
+      spots: [{
+        id: 'd0-1', shortPin: '深圳T3汇合', time: '16:15 – 18:55', duration: '中转候机约 2.5h',
+        name: '深圳宝安国际机场 T3 国际出发区汇合',
+        mapQuery: 'Shenzhen Baoan International Airport Terminal 3', prevOrigin: 'Shenzhen Baoan International Airport',
+        legMode: '🚶 航站楼内中转', legTime: '约25m过边检', legPrice: '免费 ¥0',
+        ticketPrice: '已含在国际往返机票（¥4,547/人）', bookingLevel: 'done', bookingText: '已出票 · 提前选双人座',
+        intro: '两人在深圳 T3 汇合！CZ3071 由空客 A330 执飞，经济舱为超适合两个女生的【2-4-2 座位排布】——选靠窗两连座进出不用跨过陌生人！机上填好澳洲《入境旅客登记卡》(IPC)。',
+        commuteDetail: '值机确认行李直挂 SYD；落地深圳 T3 后无需取行李，沿「国际转机」指示过边检即达。',
+        priceDetail: '• 机票：已付 ¥4,547\n• 候机简餐：约 ¥45–65/人。',
+        rainAlt: '全室内航站楼，带空保温杯过安检接热水。',
+        tips: '⚠️ 随身包绝不能留肉干、火腿面包、新鲜水果，带入澳洲未申报罚款起步 AUD $3,300+！'
+      }]
+    };
+
+    var SYDNEY_DAYS_5_TO_9 = [
+      {
+        day: 5, date: '9月15日 (周三)', city: '悉尼 · 海港地标线',
+        baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'walking',
+        title: '悉尼海港明信片日 · 歌剧院中文导览 × 皇家植物园 × 音乐剧之夜',
+        wakeTime: '09:30 出门', weatherTip: '悉尼9月 11–21°C，晴朗微风',
+        dayCostSummary: '门票 AUD $50(≈¥240) + 音乐剧 + 公交约 AUD $6.4(≈¥31)', hotel: '悉尼 Town Hall 周边酒店',
+        sunnySummary: '歌剧院内部中文导览 → 皇家植物园漫步到麦考利夫人座椅拍大桥歌剧院同框 → Opera Bar 海边日落 → 晚上看重磅音乐剧！',
+        rainyPlan: '🌧️ 雨天B计划：歌剧院内部导览（室内不受影响）→ 步行5m进免费的【当代艺术博物馆 MCA】（4楼室内隔窗拍歌剧院！）→ 乘轻轨去【QVB 百年宫殿商场下午茶】→ 晚上照常看音乐剧！',
+        spots: [
+          {
+            id: 's5-1', shortPin: '悉尼歌剧院', time: '10:00 – 11:45', duration: '导览1h + 外景45m',
+            name: '悉尼歌剧院 (Sydney Opera House) 官方中文导览',
+            mapQuery: 'Sydney Opera House, Bennelong Point, Sydney NSW', prevOrigin: 'Town Hall Station, Sydney NSW',
+            legMode: '🚋 轻轨L2/L3', legTime: '8m车程 + 6m步行', legPrice: 'AUD $3.20 (≈¥15)',
+            ticketPrice: '网购预售 AUD $50 (≈¥240) · 现场买 $55', bookingLevel: 'required', bookingText: '提前2–4周订中文团',
+            intro: '100多万片瑞典白瓷砖拼出的世界文化遗产！参加1h官方普通话导览走进平时不开放的音乐厅/歌剧厅内部，听建筑师乌松的传奇故事并登内部露台拍悉尼港！',
+            commuteDetail: 'Town Hall 刷信用卡坐 L2/L3 轻轨到终点 Circular Quay（8分钟），沿东侧海边走 6 分钟即达下层集合中心。',
+            priceDetail: '• 中文导览成人票：官网预售 AUD $50 (≈¥240)，现场 $55\n• 外广场与大台阶拍照：免费 AUD $0。',
+            rainAlt: '🌧️ 导览 95% 在室内剧场进行，下雨完全不耽误！',
+            tips: '约有300级台阶，必穿舒适平底鞋，大包免费寄存。'
+          },
+          {
+            id: 's5-2', shortPin: '麦考利夫人座椅', time: '12:15 – 15:15', duration: '漫步简餐约 2.5h',
+            name: '悉尼皇家植物园 & 麦考利夫人座椅 (Mrs Macquarie\'s Chair)',
+            mapQuery: 'Mrs Macquaries Chair, Sydney NSW', prevOrigin: 'Sydney Opera House, Sydney NSW',
+            legMode: '🚶 海滨平路漫步', legTime: '约25分钟 (1.6km)', legPrice: '免费 AUD $0',
+            ticketPrice: '免费入园 AUD $0', bookingLevel: 'none', bookingText: '免费免预约',
+            intro: '沿着弧形海湾水边平路走到半岛顶端砂岩观景石椅——全悉尼唯一能把【悉尼歌剧院白帆 + 海港大桥】黄金比例同框的明信片封面机位！',
+            commuteDetail: '从歌剧院旁直接步入植物园沿海堤平路漫步，零爬坡压力。',
+            priceDetail: '• 门票：免费 AUD $0；园内咖啡简餐人均约 AUD $22 (≈¥105)。',
+            rainAlt: '🌧️ 大雨改去环形码头西侧免费的【当代艺术博物馆 MCA】+【新州州立图书馆古典阅读室】(均 $0)。',
+            tips: '午后 14:00–16:00 拍歌剧院顺光最蓝！'
+          },
+          {
+            id: 's5-3', shortPin: 'Opera Bar', time: '16:00 – 18:00', duration: '日落小酌约 1.5h',
+            name: 'Opera Bar 悉尼港绝美日落露天餐吧',
+            mapQuery: 'Opera Bar, Sydney Opera House', prevOrigin: 'Mrs Macquaries Chair, Sydney NSW',
+            legMode: '🚶 原路海边返回', legTime: '约22分钟', legPrice: '免费 AUD $0',
+            ticketPrice: '免门票 · 饮品小食人均约 AUD $28(≈¥135)', bookingLevel: 'none', bookingText: '16:15前去占临海座',
+            intro: '正对海港大桥看 17:46 夕阳把天空染成粉紫色，氛围感全球第一！',
+            commuteDetail: '植物园沿水边走回歌剧院底层即达。',
+            priceDetail: '• 特调饮品 AUD $15–22，炸鱿鱼/生蚝半打 AUD $24–32。',
+            rainAlt: '🌧️ 有一半座位设在歌剧院大楼梯遮雨廊下，小雨照样坐看海景！',
+            tips: '⚠️ 严防海鸥俯冲抢食，食物绝不能离开视线！'
+          },
+          {
+            id: 's5-4', shortPin: 'Capitol/歌剧院看剧', time: '19:00 / 19:30', duration: '观剧约 2.5h',
+            name: '悉尼音乐剧之夜（《帕丁顿熊》首演 或 歌剧院《悲惨世界》）',
+            mapQuery: 'Capitol Theatre, 13 Campbell St, Haymarket NSW', prevOrigin: 'Opera Bar, Sydney NSW',
+            legMode: '🚋 轻轨直达 (或留歌剧院)', legTime: '轻轨12分钟', legPrice: 'AUD $3.20 (≈¥15)',
+            ticketPrice: '周中好座约 AUD $130–185 (≈¥620–890)', bookingLevel: 'required', bookingText: '提前3–6个月锁票',
+            intro: 'Capitol Theatre 看《Paddington》全球第3城首演，或直接在歌剧院楼上看《悲惨世界》40周年全本！',
+            commuteDetail: '去 Capitol 坐 L2/L3 到 Capitol Square 站下车即到，散场步行 8 分钟回 Town Hall 酒店。',
+            priceDetail: '• 周二至周四晚场比周六便宜 AUD $30–50/张！',
+            rainAlt: '🌧️ 100% 室内顶级视听盛宴。',
+            tips: '提早 30 分钟入场打卡买周边。'
+          }
+        ]
+      },
+      {
+        day: 6, date: '9月16日 (周四)', city: '悉尼 · 海岸与艺术线',
+        baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'transit',
+        title: '南太平洋蔚蓝海岸 · 邦迪冰山泳池 × 美术馆 × 周四深夜逛街夜',
+        wakeTime: '09:30 出门', weatherTip: '海边紫外线极强，必涂SPF50+防晒',
+        dayCostSummary: '步道美术馆全免 ¥0 + 往返公交约 AUD $9.6(≈¥46)', hotel: '悉尼 Town Hall 周边酒店',
+        sunnySummary: '邦迪海滩吃松饼 → 打卡网红悬崖冰山泳池 → 走 2.5km 精华悬崖步道看海浪与鲸鱼 → 下午逛免费新州美术馆与大教堂 → 晚上解锁周四 21:00 深夜百货！',
+        rainyPlan: '🌧️ 雨天B计划：海边下雨改去达令港全室内【SEA LIFE 悉尼水族馆】→ L1轻轨去【新悉尼鱼市场】室内吃热焗龙虾 → 下午逛【澳洲博物馆/新州美术馆】→ 地下连廊无缝逛【周四 21:00 深夜商场】！',
+        spots: [
+          {
+            id: 's6-1', shortPin: '邦迪冰山泳池', time: '10:15 – 13:30', duration: '早午餐+漫步约 3h',
+            name: '邦迪海滩 (Bondi) · Icebergs 冰山泳池 · Bondi→Bronte 悬崖步道',
+            mapQuery: 'Bondi Icebergs Pool, 1 Notts Ave, Bondi Beach NSW', prevOrigin: 'Town Hall Station, Sydney NSW',
+            legMode: '🚇 T4火车 + 🚌 333巴士', legTime: '共约28分钟', legPrice: 'AUD $4.80 (≈¥23)',
+            ticketPrice: '海滩步道免费 $0 · 进泳池拍照 AUD $10(≈¥48)', bookingLevel: 'none', bookingText: '全程免预约',
+            intro: '白色悬崖无边泳池巨浪溅入池中超震撼！只走最美最平缓的 Bondi→Bronte 2.5km 精华栈道（1h超轻松），9月常能肉眼看到远处座头鲸喷水！',
+            commuteDetail: 'Town Hall 坐 T4 火车 12m 到 Bondi Junction，出站换 333 快巴 15m 到海滩；回程在 Bronte 坐 379 公交回火车站。',
+            priceDetail: '• 步道免费 $0；进 Icebergs 泳池可选 AUD $10；Bills 松饼早午餐两人分食人均约 AUD $28 (≈¥135)。',
+            rainAlt: '🌧️ 雨天替代：达令港【SEA LIFE 悉尼水族馆】（网购约 AUD $41 ≈ ¥196，全室内看儒艮企鹅鲨鱼隧道！）。',
+            tips: '走到 Bronte 就坐车回城，别硬走 6km 全程！'
+          },
+          {
+            id: 's6-2', shortPin: '新州美术馆&大教堂', time: '14:30 – 20:30', duration: '看展+周四夜逛',
+            name: '新州美术馆 (AGNSW) → 圣玛丽大教堂 → 周四深夜购物预热 (QVB)',
+            mapQuery: 'Art Gallery of New South Wales, Sydney NSW', prevOrigin: 'Bronte Beach, NSW',
+            legMode: '🚌379 + 🚇T4至Martin Place', legTime: '约35分钟', legPrice: 'AUD $4.80 (≈¥23)',
+            ticketPrice: '美术馆与大教堂全部免费 AUD $0', bookingLevel: 'none', bookingText: '周四百货延至 21:00 关门！',
+            intro: '免费看梵高莫奈真迹与全新的纯白玻璃北馆、地下油罐展厅 The Tank；步行 7m 到哥特双塔圣玛丽大教堂，傍晚钻进百年宫殿 QVB 趁周四开到 21:00 试衣比价！',
+            commuteDetail: '从教堂走到 QVB / Town Hall 仅 6 分钟，逛完走 3 分钟回房！',
+            priceDetail: '• 门票全免 $0；达令港半份猪肋排晚餐人均约 AUD $35 (≈¥168)。',
+            rainAlt: '🌧️ 商圈地下通道与美术馆全室内避雨。',
+            tips: '今晚先看好尺码价格，周六集中扫货开退税单！'
+          }
+        ]
+      },
+      {
+        day: 7, date: '9月17日 (周五 · $9.65封顶福利日！)', city: '悉尼 · 萌宠海港日落线',
+        baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'transit',
+        title: '最美海景考拉动物园 × 新悉尼鱼市场 × 天文台山金色日落',
+        wakeTime: '09:30 出门', weatherTip: '周五全天渡轮轻轨封顶仅 AUD $9.65(≈¥46)！',
+        dayCostSummary: '动物园约 AUD $46.8(≈¥225) + 全天无限坐船坐车封顶仅 ¥46！', hotel: '悉尼 Town Hall 周边酒店',
+        sunnySummary: '坐 F2 渡轮去【塔龙加动物园】俯瞰歌剧院看考拉袋鼠 → 去 2026 全新波浪屋顶【新悉尼鱼市场】吃生蚝海胆 → 逛【岩石区】→【天文台山】看海港大桥金色日落！',
+        rainyPlan: '🌧️ 雨天B计划：露天动物园改去达令港全室内的【WILD LIFE Sydney Zoo】（恒温室内看考拉袋鼠不淋雨！）→ L1轻轨去【新悉尼鱼市场】室内大厅吃热海鲜 → 逛免费【澳洲博物馆】！',
+        spots: [
+          {
+            id: 's7-1', shortPin: '塔龙加动物园', time: '09:45 – 13:15', duration: '含渡轮约 3.5h',
+            name: '塔龙加动物园 (Taronga Zoo — 长颈鹿考拉同框歌剧院)',
+            mapQuery: 'Taronga Zoo Sydney, Mosman NSW', prevOrigin: 'Town Hall Station, Sydney NSW',
+            legMode: '🚋轻轨 + ⛴️ F2渡轮', legTime: '轻轨8m + 渡轮12m', legPrice: '计入周五 $9.65 全天封顶',
+            ticketPrice: '网购电子票约 AUD $46.8 (≈¥225) · 现场 $53', bookingLevel: 'recommended', bookingText: '网购立省12%',
+            intro: '看考拉、袋鼠、微笑短尾矮袋鼠 Quokka 与海景海狮秀！下船在码头直接坐 238 接驳巴士上山顶正门，一路顺坡往下逛到码头最省腿！',
+            commuteDetail: 'Circular Quay 4 号码头乘 F2 渡轮 12 分钟即达。今天周五触发 $9.65 封顶后，下午所有轻轨公交全变成 $0！',
+            priceDetail: '• 门票约 AUD $46.8 (≈¥225)；考拉合影可选约 AUD $35。',
+            rainAlt: '🌧️ 雨天改去达令港室内【WILD LIFE Sydney Zoo】(约 AUD $41)。',
+            tips: '11:00 海狮表演和 12:00 飞鸟秀背景就是悉尼歌剧院，必看！'
+          },
+          {
+            id: 's7-2', shortPin: '新鱼市场&天文台山', time: '13:45 – 18:15', duration: '海鲜午餐+古街日落',
+            name: '新悉尼鱼市场 (New Fish Market) → 岩石区 → 天文台山日落',
+            mapQuery: 'Observatory Hill Park, Millers Point NSW', prevOrigin: 'Circular Quay, Sydney NSW',
+            legMode: '🚋 L1轻轨往返', legTime: '约25分钟', legPrice: 'AUD $0 (已达周五$9.65封顶！)',
+            ticketPrice: '景点全免 $0 · 鱼市场海鲜人均约 AUD $42(≈¥200)', bookingLevel: 'none', bookingText: '17:10前上天文台山占草坪',
+            intro: '在 2026 新落成的波浪大屋顶鱼市场炫现开生蚝与芝士焗龙虾，下午逛岩石区古街，傍晚在天文台山百年大树下看海港大桥琥珀色夕阳！',
+            commuteDetail: '渡轮回城坐轻轨去 Fish Market 站，下午坐公交/轻轨回岩石区上坡 8 分钟到天文台山。',
+            priceDetail: '• 现开生蚝半打约 AUD $18，刺身+焗虾两人分食人均约 ¥200；天文台山免费 $0。',
+            rainAlt: '🌧️ 新鱼市场全室内有大顶棚；阴雨傍晚改去 QVB 对面吃草莓西瓜蛋糕逛纪伊国屋书店！',
+            tips: '天擦黑顺大路下山去 Barangaroo 吃晚餐。'
+          }
+        ]
+      },
+      {
+        day: 8, date: '9月18日 (周六 · $9.65封顶+扫货日)', city: '悉尼 · 学府市集购物线',
+        baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'transit',
+        title: '霍格沃茨悉尼大学 × 周六市集 × Town Hall 终极扫货与退税整理',
+        wakeTime: '09:30 出门', weatherTip: '周六公交$9.65封顶 · 商场18:00关门先买百货后逛药房！',
+        dayCostSummary: '门票全免 ¥0 · 周六交通封顶上限 AUD $9.65(≈¥46)', hotel: '悉尼 Town Hall 酒店（整理退税）',
+        sunnySummary: '悉尼大学哈利波特楼拍大片 → 周六限定【岩石区市集】淘手作 → 14:30 回酒店楼下 QVB/Pitt St/药房一站式扫货凑 $300 退税 → 填好退税二维码！',
+        rainyPlan: '🌧️ 雨天B计划：悉尼大学哥特石廊内部遮雨更有古堡感！大雨改逛百年玻璃顶【The Strand Arcade + QVB + Westfield】，地下连廊全通一滴雨不淋！',
+        spots: [
+          {
+            id: 's8-1', shortPin: '悉尼大学&岩石区市集', time: '09:45 – 14:00', duration: '拍照+逛集约 4h',
+            name: '悉尼大学主楼 Quadrangle → 岩石区周六市集 (The Rocks Markets)',
+            mapQuery: 'The Quadrangle, University of Sydney NSW', prevOrigin: 'Town Hall Station, Sydney NSW',
+            legMode: '🚌 422/423/428巴士', legTime: '12分钟直达校门', legPrice: '计入周六 $9.65 封顶',
+            ticketPrice: '全部免费开放 AUD $0', bookingLevel: 'none', bookingText: '岩石区市集仅周六日开',
+            intro: '上午拍牛津哥特风魔法学院大片，中午去海港大桥下的白色帐篷市集淘本土香薰与手绘明信片！',
+            commuteDetail: '巴士 12m 到悉尼大学，之后坐车回 Circular Quay 逛市集。',
+            priceDetail: '• 门票 $0；手作冰箱贴/明信片 AUD $6–12，街头午餐约 AUD $18。',
+            rainAlt: '🌧️ 大雨改逛市中心古典玻璃拱廊【The Strand Arcade】。',
+            tips: '14:30 准时回 Town Hall 开始商场扫货！'
+          },
+          {
+            id: 's8-2', shortPin: 'QVB商圈扫货退税', time: '14:30 – 20:30', duration: '扫货+打包退税',
+            name: 'QVB · Pitt St · David Jones · Chemist Warehouse 扫货 & 填退税App',
+            mapQuery: 'Queen Victoria Building, 455 George St, Sydney NSW', prevOrigin: 'The Rocks, Sydney NSW',
+            legMode: '🚋 轻轨L2/L3直达QVB', legTime: '仅8分钟', legPrice: 'AUD $0 (已封顶)',
+            ticketPrice: '同ABN满 AUD $300 退税 9.09%', bookingLevel: 'required', bookingText: '必留纸质原件 Tax Invoice！',
+            intro: '18:00 前买齐 Aesop、Jurlique、Haigh\'s 青蛙巧克力、Lululemon/UGG；18:00 后去 Chemist Warehouse 扫木瓜膏保健品和 Coles 超市买半价 Tim Tam！',
+            commuteDetail: '就在酒店楼下 300 米圈内，买满随时送回房间！',
+            priceDetail: '• 满 AUD $300 (≈¥1,440) 退约 ¥130 回信用卡。',
+            rainAlt: '🌧️ 地下连廊全通。',
+            tips: '今晚录好 My TRS Claim 二维码，预约明早 06:30 Uber！'
+          }
+        ]
+      },
+      {
+        day: 9, date: '9月19日 (周日)', city: '悉尼 → 广州 → 回家',
+        baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'driving',
+        title: '07:00 抵悉尼 T1 丝滑退税 · 10:05 乘 CZ326 满载回国',
+        wakeTime: '06:00 起床 · 06:30 上Uber', weatherTip: '周日早20分钟畅通直达机场',
+        dayCostSummary: '两人拼 Uber 人均≈¥120 · 领退税回血！', hotel: '温暖的家',
+        sunnySummary: '06:55 到 T1 → 托运液体先找 ABF 盖章 → 南航值机直挂 → 过安检去 Heinemann 右侧 TRS 扫码退税 → 10:05 飞广州 T2，各自转回上海(20:00)/重庆(20:20)！',
+        rainyPlan: '🌧️ 专车门到门不淋雨。',
+        spots: [{
+          id: 's9-1', shortPin: '悉尼机场T1退税', time: '06:55 – 10:05', duration: '值机+TRS退税约 2.5h',
+          name: '悉尼国际机场 T1 (ABF 盖章 + TRS 退税柜台)',
+          mapQuery: 'Sydney Airport Terminal 1', prevOrigin: 'Town Hall Station, Sydney NSW',
+          legMode: '🚗 两人拼 Uber 门到门', legTime: '约20分钟', legPrice: '整车约 AUD $50（人均 ≈¥120）',
+          ticketPrice: 'TRS 退税免手续费', bookingLevel: 'required', bookingText: '提前3h到机场',
+          intro: '托运护肤品/蜂蜜务必在值机托运前先给海关验货盖章；随身包表过安检后直接去免税店旁 TRS 扫码退回信用卡！',
+          commuteDetail: '2人拼 Uber 比买两张 $21.5 机场火车票省心十倍！',
+          priceDetail: '• Uber 人均约 ¥120。',
+          rainAlt: '全室内航站楼。',
+          tips: '落地广州 T2 后上海中转 1h50m，下机快步走国际转国内通道！'
+        }]
+      }
+    ];
+
+    var ROUTE_DAYS = {
+      nsw: [
+        DAY_0_SHARED,
+        {
+          day: 1, date: '9月11日 (周六 · $9.65封顶)', city: '悉尼（免转机直入市区）',
+          baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'transit',
+          title: '免转机松弛开局 · 寄存行李喝澳白 · 达令港夜景与周六烟花',
+          wakeTime: '06:25 落地悉尼', weatherTip: '周六公交封顶仅 $9.65',
+          dayCostSummary: '门票 ¥0 + 机场Uber人均≈¥120', hotel: '悉尼酒店 第1/8晚（0换酒店！）',
+          sunnySummary: '08:30 到市区酒店存箱子喝澳白，14:00 洗澡补大觉，傍晚逛达令港看周六免费海港烟花！',
+          rainyPlan: '🌧️ 雨天直接进百年宫殿【QVB】室内早午餐 + 免费【澳洲博物馆】，14:00 回房睡午觉！',
+          spots: [
+            { id: 'nsw1-1', shortPin: '酒店寄存&早午餐', time: '06:25 – 13:30', duration: '清关+慢逛休整', name: '悉尼清关 → Town Hall 酒店存行李 → The Grounds 第一杯澳白', mapQuery: 'The Grounds of the City, 500 George St, Sydney NSW', prevOrigin: 'Sydney Airport Terminal 1', legMode: '🚗 两人拼 Uber', legTime: '25分钟', legPrice: '整车约 AUD $50(人均¥120)', ticketPrice: '景点免费 · Brunch人均约¥120', bookingLevel: 'none', bookingText: '免转机超轻松', intro: '省去转机奔波！存好箱子在复古电影风咖啡馆喝第一杯 Flat White，14:00 准时回房睡午觉清零红眼疲惫！', commuteDetail: 'T1 网约车区打 Uber 直达酒店门口。', priceDetail: '• Uber 人均 ¥120；咖啡 AUD $5.5 (≈¥26)。', rainAlt: '🌧️ 全室内商场连廊活动。', tips: '下午睡 2 小时后面精神百倍！' },
+            { id: 'nsw1-2', shortPin: '达令港夜景烟花', time: '17:00 – 21:00', duration: '晚餐夜景约 3.5h', name: '达令港海滨 (Cockle Bay) 夜景晚餐与周六烟花', mapQuery: 'Cockle Bay Wharf, Darling Harbour NSW', prevOrigin: 'Town Hall Station, Sydney NSW', legMode: '🚶 步行直达', legTime: '8分钟', legPrice: '免费 $0', ticketPrice: '夜景烟花免费 AUD $0', bookingLevel: 'none', bookingText: '周六常有20:30免费烟花', intro: '摩天楼灯火环绕的海港步道，周六晚水面常有免费璀璨烟花秀！', commuteDetail: '从 Town Hall 步行 8 分钟即达水边。', priceDetail: '• 晚餐人均约 AUD $30–45 (≈¥145–215)。', rainAlt: '🌧️ 雨天去紧邻的唐人街/Darling Square 吃热火锅暖胃。', tips: '早点休息明天坐大渡轮去曼利！' }
+          ]
+        },
+        {
+          day: 2, date: '9月12日 (周日 · $9.65封顶)', city: '悉尼 · 曼利海滩线',
+          baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'transit',
+          title: '周日 ¥46 游船自由 · 曼利海滩双湾漫步 × 帕丁顿维多利亚街区',
+          wakeTime: '09:30 出门', weatherTip: '周日全天渡轮公交封顶仅 AUD $9.65(≈¥46)！',
+          dayCostSummary: '门票全免 ¥0 + 全天无限渡轮公交封顶 ¥46', hotel: '悉尼酒店 第2/8晚',
+          sunnySummary: '坐绿黄双层大渡轮 F1 横跨悉尼港去度假小镇【曼利海滩 & Shelly Beach】踏浪午餐，下午逛精致铸铁阳台街区 Paddington！',
+          rainyPlan: '🌧️ 雨天改逛免费【澳洲博物馆（恐龙与宝石馆）】+【QVB 下午茶】+【Surry Hills 室内精品咖啡书店】！',
+          spots: [
+            { id: 'nsw2-1', shortPin: '曼利双层渡轮', time: '10:15 – 14:30', duration: '航程往返1h+海滩3h', name: 'F1 悉尼港大渡轮 → 曼利海滩 & 谢利湾 (Manly & Shelly Beach)', mapQuery: 'Manly Beach, NSW 2095', prevOrigin: 'Circular Quay Wharf 3, Sydney NSW', legMode: '🚋轻轨 + ⛴️ F1渡轮', legTime: '轻轨8m+渡轮30m', legPrice: '周日全天封顶 AUD $9.65(≈¥46)', ticketPrice: '海滩免费 AUD $0', bookingLevel: 'none', bookingText: '直接刷卡上船', intro: '30分钟航程驶过歌剧院与海港大桥，甲板视野堪比几百块的游船！沿海边平路走到静谧果冻海谢利湾吃海景午餐。', commuteDetail: 'Circular Quay 3号码头乘 F1 官方大船。', priceDetail: '• 全天船车封顶仅 ¥46；海边简餐人均约 ¥135。', rainAlt: '🌧️ 改去免费室内【澳洲博物馆】。', tips: '回程坐船头正看歌剧院迎面扑来！' },
+            { id: 'nsw2-2', shortPin: '帕丁顿水库花园', time: '15:30 – 18:30', duration: '逛街拍照约 2.5h', name: '帕丁顿铸铁阳台街区 & 古罗马风下沉水库花园', mapQuery: 'Paddington Reservoir Gardens, Paddington NSW', prevOrigin: 'Circular Quay, Sydney NSW', legMode: '🚌 333巴士直达', legTime: '18分钟', legPrice: 'AUD $0 (已封顶)', ticketPrice: '免费开放 AUD $0', bookingLevel: 'none', bookingText: '免预约', intro: '百年红砖拱廊改造成的悬浮花园，周边全是澳洲本土设计师买手店！', commuteDetail: '333路巴士到 Paddington Town Hall 下车。', priceDetail: '• 门票 $0。', rainAlt: '🌧️ 改逛百年玻璃拱廊 Strand Arcade。', tips: '16:00 斜阳光影最美！' }
+          ]
+        },
+        {
+          day: 3, date: '9月13日 (周一 · 看天机动去蓝山)', city: '悉尼周边 · 蓝山国家公园',
+          baseHotelQuery: 'Central Station Sydney', travelMode: 'transit',
+          title: '世界自然遗产蓝山三姐妹峰 · 刷卡坐火车立省 ¥370+（看准晴天再去！）',
+          wakeTime: '08:30 出门', weatherTip: '蓝山比市区冷5–7°C，穿卫衣+防风外套！',
+          dayCostSummary: '缆车通票 AUD $64(≈¥307) + 往返火车巴士约 AUD $15(≈¥72)', hotel: '悉尼酒店 第3/8晚',
+          sunnySummary: '在 Central 刷信用卡坐 BMT 双层火车 2h 直达蓝山：俯瞰回音谷三姐妹峰 → 玩转 Scenic World 52°森林红矿车与高空透明缆车 → 逛早春樱花小镇 Leura！',
+          rainyPlan: '🌧️ 大雾下雨神操作：没提前死绑报团，若周一预报蓝山大雾下雨，直接与周三/周五市区日对调（换到周五去火车往返封顶只要 ¥46！），100% 晴天看壮阔峡谷！',
+          spots: [{
+            id: 'nsw3-1', shortPin: '蓝山三姐妹峰&卢拉', time: '09:00 – 17:15', duration: '蓝山+小镇约 6h', name: '蓝山三姐妹峰 (Echo Point) · Scenic World 四大缆车 · 卢拉童话小镇', mapQuery: 'Scenic World, Katoomba NSW', prevOrigin: 'Central Station, Sydney NSW', legMode: '🚆 BMT城际火车 + 🚌 686巴士', legTime: '火车2h + 巴士10m', legPrice: '错峰往返约 AUD $15(≈¥72)', ticketPrice: '观景台免费 · 缆车无限通票 AUD $64(≈¥307)', bookingLevel: 'recommended', bookingText: '前一天确认晴天再买缆车票', intro: '体验全球最陡52°矿山小火车冲入侏罗纪雨林谷底，横跨瀑布峡谷坐透明底缆车，回程在 1 站外的 Leura 花园小镇喝热可可看早春玉兰樱花！', commuteDetail: 'Central 刷 Visa/Apple Pay 坐 BMT 线到 Katoomba 换 686 公交；回程在 Leura 上车直返悉尼。', priceDetail: '• 缆车通票 AUD $64 (≈¥307) + 交通约 ¥72，比 ¥750 一日团每人省 ¥370！', rainAlt: '🌧️ 雨雾天直接与晴天市区日互换日期。', tips: '火车选左侧靠窗位风景更好！'
+          }]
+        },
+        {
+          day: 4, date: '9月14日 (周二)', city: '悉尼周边 · 史蒂芬斯港海豚滑沙',
+          baseHotelQuery: 'Town Hall Station Sydney', travelMode: 'driving',
+          title: '一半大海一半沙漠 · 史蒂芬斯港追野生海豚 + 海岸大沙丘滑沙',
+          wakeTime: '07:30 集合', weatherTip: '戴墨镜防风沙，穿方便拍沙的运动装',
+          dayCostSummary: '全包一日小团约 AUD $145(≈¥695)', hotel: '悉尼酒店 第4/8晚',
+          sunnySummary: '报悉尼出发一日小团向北 2.5h：上午游船出海看上百只野生海豚伴游，下午坐四驱越野车冲上 40 米高安娜湾白沙漠无限滑沙！',
+          rainyPlan: '🌧️ 提前3天看晴天再订团；若周二有雨，改订【猎人谷酒庄品酒芝士巧克力室内团】或【堪培拉9月百万郁金香花展+国家美术馆团】！',
+          spots: [{
+            id: 'nsw4-1', shortPin: '史蒂芬斯港海豚滑沙', time: '07:45 – 18:30', duration: '全天小团约 10.5h', name: '史蒂芬斯港观海豚游船 & 安娜湾大沙漠滑沙 (Port Stephens)', mapQuery: 'Anna Bay Sand Dunes, Anna Bay NSW', prevOrigin: 'Haymarket Sydney NSW', legMode: '🚐 精品小团往返接送', legTime: '单程约2.5h', legPrice: '含在团费内', ticketPrice: '全包团费约 AUD $135–155(≈¥650–745)', bookingLevel: 'required', bookingText: '提前3–5天看准晴天订团', intro: '左手金色沙漠右手蔚蓝太平洋，航拍视觉震撼满分！', commuteDetail: '唐人街/Town Hall 集合上车，傍晚送回市中心。', priceDetail: '• 含车+游船+四驱沙漠车+滑沙板约 ¥695；码头午餐自理约 ¥110。', rainAlt: '🌧️ 雨天改订酒庄美食或改期。', tips: '戴好墨镜防晒防沙！'
+          }]
+        },
+        SYDNEY_DAYS_5_TO_9[0], SYDNEY_DAYS_5_TO_9[1], SYDNEY_DAYS_5_TO_9[2], SYDNEY_DAYS_5_TO_9[3], SYDNEY_DAYS_5_TO_9[4]
+      ],
+
+      mel: [
+        DAY_0_SHARED,
+        {
+          day: 1, date: '9月11日 (周六)', city: '悉尼转机 → 墨尔本',
+          baseHotelQuery: 'Flinders Street Station Melbourne', travelMode: 'walking',
+          title: '落地直飞墨尔本（仅换1次酒店）· 弗林德斯街与雅拉河初见',
+          wakeTime: '06:25 落地悉尼', weatherTip: '墨尔本9月 9–18°C，随身带伞与风衣',
+          dayCostSummary: '景点全免 ¥0 + 内陆机票≈¥580 + 机场Uber人均≈¥145', hotel: '墨尔本 CBD 酒店 第1/3晚',
+          sunnySummary: '悉尼清关后乘 10:30–11:00 航班飞墨尔本，下午入住 CBD 酒店洗澡补觉，16:00 打卡弗林德斯街车站、圣保罗座堂、涂鸦巷与雅拉河畔晚餐！',
+          rainyPlan: '🌧️ 雨天B计划：坐免费电车钻进全玻璃顶【皇家拱廊 & 街区拱廊】喝热巧克力 + 逛联邦广场全室内免费的【ACMI 电影互动博物馆】！',
+          spots: [
+            { id: 'm1-1', shortPin: '悉尼转飞墨尔本', time: '06:25 – 13:30', duration: '转机+飞行1.5h', name: '悉尼 T1 清关 → 飞墨尔本 (SYD→MEL) → 入住免费电车区酒店', mapQuery: 'Melbourne Airport (MEL), VIC', prevOrigin: 'Sydney Airport Terminal 1', legMode: '✈️ 内陆航班1.5h + 🚗 Uber进城', legTime: '飞行1.5h+进城30m', legPrice: 'MEL进城Uber整车约$60(人均¥145)', ticketPrice: '含行李单程机票约 AUD $120(≈¥580)', bookingLevel: 'required', bookingText: '提前买 Qantas/Virgin', intro: '留足4h在悉尼清关换航站楼，中午抵墨尔本直接办入住睡午觉，全程仅换1次酒店！', commuteDetail: '2人带箱子从墨尔本机场打 Uber 整车约 $60 直达酒店门口，比买两张 $25.9 的 SkyBus 单程票省力太多！', priceDetail: '• 机票约 ¥580；进城 Uber 人均约 ¥145。', rainAlt: '🌧️ 专车直达酒店雨棚。', tips: '定好 15:45 闹钟出门逛街！' },
+            { id: 'm1-2', shortPin: '弗林德斯街&南岸夜景', time: '16:00 – 20:30', duration: '漫步+晚餐约 4h', name: '弗林德斯街车站 · 圣保罗座堂 · 涂鸦巷 → 雅拉河南岸夜景', mapQuery: 'Flinders Street Railway Station, Melbourne VIC', prevOrigin: 'Collins Street, Melbourne VIC', legMode: '🚋 CBD免费电车', legTime: '5分钟', legPrice: '免费 AUD $0', ticketPrice: '全部免费 AUD $0', bookingLevel: 'none', bookingText: '免预约', intro: '300米内打卡鹅黄复古车站、哥特教堂、周杰伦涂鸦巷，走过王子桥看雅拉河璀璨夜景与整点喷火秀！', commuteDetail: '免费电车区直接上下车不用刷卡！', priceDetail: '• 门票电车全 $0；晚餐人均约 ¥120–200。', rainAlt: '🌧️ 进联邦广场免费【ACMI 动态影像馆】+ 唐人街吃火锅。', tips: '涂鸦巷趁 17:30 天亮前拍完！' }
+          ]
+        },
+        {
+          day: 2, date: '9月12日 (周日)', city: '墨尔本 · 文艺看剧线',
+          baseHotelQuery: 'Flinders Street Station Melbourne', travelMode: 'transit',
+          title: '维妈周日热闹市集 × 最美穹顶图书馆 × 百年拱廊 × NGV 与音乐剧',
+          wakeTime: '09:30 出门', weatherTip: '今日90%景点都在室内/大顶棚，晴雨双修！',
+          dayCostSummary: '日间门票+电车全免 ¥0！仅音乐剧门票', hotel: '墨尔本 CBD 酒店 第2/3晚',
+          sunnySummary: '维妈吃现炸果酱甜甜圈 → 州立图书馆拍八角穹顶 → 百年拱廊买可颂巧克力 → 步行过桥免费看 NGV 美术馆 → 隔壁看澳洲首演音乐剧！',
+          rainyPlan: '🌧️ 雨天满分日：维妈大棚、图书馆、对面大商场、两条玻璃顶拱廊、NGV 与剧院全在室内遮雨，下大雨也零影响！',
+          spots: [
+            { id: 'm2-1', shortPin: '维妈市场&州立图书馆', time: '10:00 – 13:45', duration: '吃逛拍照约 3.5h', name: '维多利亚女王市场 (QVM) → 维州州立图书馆八角穹顶 & Lune 可颂', mapQuery: 'State Library Victoria, Melbourne VIC', prevOrigin: 'Flinders Street Station, Melbourne VIC', legMode: '🚋 19/57/59免费电车', legTime: '8分钟', legPrice: '免费 AUD $0', ticketPrice: '全部免费 AUD $0', bookingLevel: 'none', bookingText: '维妈周日营业(周一周三休)', intro: '吃70年老餐车热果酱甜甜圈($10)与生蚝，走9分钟上图书馆6楼俯拍震撼八角白穹顶，顺路买 Lune 可颂！', commuteDetail: '维妈与图书馆均在免费电车区内 ($0)！', priceDetail: '• 门票车费 $0；甜甜圈+咖啡+可颂人均约 ¥100。', rainAlt: '🌧️ 市场大棚与图书馆全遮雨。', tips: '图书馆内手机静音拍摄。' },
+            { id: 'm2-2', shortPin: '复古拱廊&NGV&音乐剧', time: '14:15 – 21:30', duration: '看展+音乐剧之夜', name: '皇家/街区拱廊 → NGV 国际美术馆 → 墨尔本首演音乐剧', mapQuery: 'National Gallery of Victoria, Melbourne VIC', prevOrigin: 'State Library Victoria, Melbourne VIC', legMode: '🚶 穿拱廊步行过桥', legTime: '慢走过桥8分钟', legPrice: '步行过桥 AUD $0 (坐电车过河$5.7)', ticketPrice: 'NGV常设展免费 $0 · 音乐剧约¥580–800', bookingLevel: 'required', bookingText: '音乐剧提前官网锁座', intro: '逛玻璃拱廊，摸NGV哭泣水墙、躺看彩绘玻璃天幕与莫奈真迹；晚上在正隔壁 Arts Centre 看《返老还童》或去 Comedy Theatre 看《肉馅行动》！', commuteDetail: '从 Flinders St 直接走过王子桥 8 分钟到 NGV，连电车费都省了！', priceDetail: '• 拱廊与NGV门票 $0；音乐剧约 AUD $120–170 (≈¥575–815)。', rainAlt: '🌧️ 全程室内艺术殿堂。', tips: '核对好周日演出开场时间（周日常为下午或傍晚场）！' }
+          ]
+        },
+        {
+          day: 3, date: '9月13日 (周一)', city: '大洋路 · 十二门徒',
+          baseHotelQuery: 'St Pauls Cathedral Melbourne', travelMode: 'driving',
+          title: '南大洋史诗海岸线 · 野生考拉 × 洛克阿德峡谷 × 十二门徒岩',
+          wakeTime: '07:00 起床 · 07:30 集合', weatherTip: '海风强劲(8–14°C)，必穿连帽防风冲锋衣！',
+          dayCostSummary: '12–16人精品小团全包约 AUD $145(≈¥695) · 景区免票', hotel: '墨尔本 CBD 酒店 第3/3晚',
+          sunnySummary: '周一车少错峰！乘奔驰小团打卡小红帽灯塔、大洋路拱门、野生考拉林、阿波罗湾扇贝派、宝石蓝洛克阿德峡谷与震撼十二门徒！',
+          rainyPlan: '🌧️ 阴雨预案：选支持【24–48h免费改期】的小团！若预报周一极端风暴而周日大晴天，立即把小团调到周日出发，把昨天室内馆挪到周一！',
+          spots: [{
+            id: 'm3-1', shortPin: '大洋路&十二门徒岩', time: '07:30 – 20:00', duration: '全天省心小团', name: '大洋路全线 + 洛克阿德大峡谷 + 十二门徒岩 (Twelve Apostles)', mapQuery: 'Twelve Apostles, Princetown VIC', prevOrigin: 'St Pauls Cathedral, Melbourne VIC', legMode: '🚐 12–16人精品小团', legTime: '去程沿海观景 · 返程高速3h', legPrice: '含在团费内', ticketPrice: '小团约¥695 · 15m直升机可选 AUD $175(≈¥840)', bookingLevel: 'required', bookingText: '提前订可免费改期小团', intro: '45米高巨型海蚀柱耸立在南冰洋巨浪中，看一眼少一眼！不用自己右舵盘山开9小时，安全省心！', commuteDetail: 'CBD 酒店或圣保罗座堂门口接送，去程抢【左侧靠窗位】一路贴海！', priceDetail: '• 小团费约 ¥695；阿波罗湾午餐约 ¥95；直升机看晴天现场决定买不买。', rainAlt: '🌧️ 穿连帽冲锋衣防海风阵雨（别打伞会吹翻），雨后常现跨海双彩虹！', tips: '备好晕车药，长发扎紧！'
+          }]
+        },
+        {
+          day: 4, date: '9月14日 (周二)', city: '墨尔本 → 悉尼',
+          baseHotelQuery: 'Flinders Street Station Melbourne', travelMode: 'transit',
+          title: '布莱顿彩色海滩小屋 · 下午从容飞回悉尼连住 5 晚（唯一换酒店日）',
+          wakeTime: '09:30 退房存箱子', weatherTip: '看早起窗外晴雨秒切海滩或复古咖啡街！',
+          dayCostSummary: '彩虹小屋免费 + 火车¥27 + 飞悉尼≈¥580 + 两端机场交通≈¥230', hotel: '悉尼 Town Hall 酒店 第1/5晚',
+          sunnySummary: '晴天上午坐火车 24m 去拍 80 座童话【布莱顿彩虹小屋】，下午 16:30 飞抵悉尼入住 Town Hall 酒店，连住 5 晚彻底解放行李！',
+          rainyPlan: '🌧️ 雨天B计划：阴雨不去海滩，改坐 86 路电车去【Fitzroy 喝冠军手冲咖啡 Proud Mary + 逛复古买手店与室内墨尔本博物馆】再去机场！',
+          spots: [{
+            id: 'm4-1', shortPin: '彩虹小屋→飞悉尼', time: '10:00 – 19:00', duration: '上午打卡+下午1.5h飞悉尼', name: '布莱顿彩虹小屋 (Brighton Bathing Boxes) → 下午飞抵悉尼入住', mapQuery: 'Brighton Bathing Boxes, Brighton VIC', prevOrigin: 'Flinders Street Station, Melbourne VIC', legMode: '🚆 Sandringham火车24m → ✈️飞悉尼', legTime: '16:30飞 → 18:00到悉尼', legPrice: '火车 AUD $5.7 + 悉尼Uber人均≈¥115', ticketPrice: '海滩免费 $0 · 内陆机票约¥580', bookingLevel: 'required', bookingText: '订下午航班含行李', intro: '拍完撞色袋鼠冲浪木屋，回酒店取箱子飞悉尼，晚餐时间已在悉尼市中心吃大餐逛超市！', commuteDetail: '落地悉尼国内航站楼后，2人直接打 Uber 20m 到 Town Hall 酒店（整车约 $45，别买两张 $21.5 火车票！）。', priceDetail: '• 彩虹小屋 $0；机票约 ¥580；两端机场通勤人均约 ¥230。', rainAlt: '🌧️ 改逛 Fitzroy 室内咖啡馆与墨尔本博物馆 ($18)。', tips: '往两侧木屋走完全不用排队抢机位！'
+          }]
+        },
+        SYDNEY_DAYS_5_TO_9[0], SYDNEY_DAYS_5_TO_9[1], SYDNEY_DAYS_5_TO_9[2], SYDNEY_DAYS_5_TO_9[3], SYDNEY_DAYS_5_TO_9[4]
+      ],
+
+      reef: [
+        DAY_0_SHARED,
+        {
+          day: 1, date: '9月11日 (周六)', city: '悉尼转机 → 凯恩斯大堡礁',
+          baseHotelQuery: 'Cairns Esplanade Lagoon', travelMode: 'walking',
+          title: '飞进 28°C 热带暖夏 · 凯恩斯无边海滨泻湖与渔船海鲜',
+          wakeTime: '06:25 落地悉尼', weatherTip: '凯恩斯9月 20–29°C 旱季无雨，换夏裙！',
+          dayCostSummary: '泻湖免费 ¥0 + 飞凯恩斯≈¥880 + 打车进城人均仅¥52！', hotel: '凯恩斯海滨酒店 第1/3晚（仅悉尼半价！）',
+          sunnySummary: '悉尼清关直飞凯恩斯(3h)，打车 12m 入住码头圈海滨酒店补觉，傍晚逛免费珊瑚海无边泳池 Lagoon + 登木渔船 Prawn Star 吃冰镇大虾生蚝！',
+          rainyPlan: '🌧️ 9月凯恩斯旱季几乎零降雨！偶遇10分钟太阳雨可逛凯恩斯室内夜市做精油肩颈按摩。',
+          spots: [{
+            id: 'r1-1', shortPin: '飞凯恩斯&渔船海鲜', time: '10:30 – 20:30', duration: '飞行3h+海滨慢傍晚', name: '飞抵凯恩斯入住 → 滨海无边泻湖 (Lagoon) → Prawn Star 渔船海鲜', mapQuery: 'Prawn Star Cairns, Marlin Marina QLD', prevOrigin: 'Cairns Airport QLD', legMode: '🚗 Uber 12分钟进城 + 🚶海边慢走5m', legTime: '机场距市区仅6km！', legPrice: 'Uber整车仅 AUD $22(人均¥52！)', ticketPrice: '泻湖免费 $0 · 海鲜拼盘人均约¥200', bookingLevel: 'required', bookingText: '提前订好内陆机票', intro: '一秒进入热带度假模式！四星海滨房人均才 ¥400+，坐在游艇码头的真实渔船上剥虎虾吹晚风超治愈！', commuteDetail: 'CNS 机场打 Uber 12m 到酒店，晚上全程海边步行 5m。', priceDetail: '• 机票单程约 ¥880；进城打车人均 ¥52；渔船海鲜人均约 ¥200。', rainAlt: '🌧️ 船上有顶棚，旁有室内夜市。', tips: '超市买盒粉盒 Travacalm 晕船药($10)明早备用！'
+          }]
+        },
+        {
+          day: 2, date: '9月12日 (周日)', city: '凯恩斯 · 外大堡礁',
+          baseHotelQuery: 'Reef Fleet Terminal Cairns', travelMode: 'walking',
+          title: '世界自然遗产 · 外大堡礁摩尔礁海上大浮台全天游（旱鸭子也能看珊瑚海龟！）',
+          wakeTime: '07:45 溜达去码头登船', weatherTip: '9月水温24°C清澈无水母，免费发防晒衣',
+          dayCostSummary: '外堡礁全包船票约 AUD $319(≈¥1,530含自助午餐+半潜艇+浮潜) · 交通¥0', hotel: '凯恩斯海滨酒店 第2/3晚',
+          sunnySummary: '步行 6m 上船直奔远离陆地 40km 的外大堡礁双层海上浮台：半潜艇、海底玻璃观察舱、穿救生衣扶浮台浮潜看小丑鱼与大海龟！',
+          rainyPlan: '🌧️ 防风浪预案：选大型固定浮台船（Sunlover/Reef Magic）最稳+提前半小时吃晕船药；罕见强风停航船司全额退，改去避风【翡翠岛】或【凯恩斯巨型水族馆】！',
+          spots: [{
+            id: 'r2-1', shortPin: '外大堡礁海上浮台', time: '08:15 – 17:00', duration: '出海全天约 8.5h', name: '外大堡礁摩尔礁豪华浮台游 (Sunlover / Reef Magic Outer Reef)', mapQuery: 'Reef Fleet Terminal, 1 Spence St, Cairns QLD', prevOrigin: 'Cairns Esplanade QLD', legMode: '🚶 步行6m到码头 + ⛴️高速双体船', legTime: '船程90m · 浮台玩足4h', legPrice: '步行去码头立省每人$35接送费！', ticketPrice: '一价全包约 AUD $319 (≈¥1,530)', bookingLevel: 'required', bookingText: '提前2–4周网购船票', intro: '9月水下能见度超20米！完全不会游泳也能坐半潜艇和海底观察室看遍五彩珊瑚墙与苏眉鱼！', commuteDetail: '住 Esplanade 南段直接步行去码头换票登船。', priceDetail: '• 含船票+海鲜热自助午餐+半潜艇+浮潜全套装备+环保税 ≈ ¥1,530。', rainAlt: '🌧️ 水下不受云层影响，吃好晕船药即可。', tips: '淘宝提前¥20买好手机防水袋拍海龟！'
+          }]
+        },
+        {
+          day: 3, date: '9月13日 (周一)', city: '凯恩斯 · 库兰达热带雨林',
+          baseHotelQuery: 'Cairns Central Station', travelMode: 'transit',
+          title: '亿万年世界遗产雨林 · 百年峡谷复古火车 × Skyrail 树冠缆车 × 摸考拉',
+          wakeTime: '08:45 轻松出发', weatherTip: '雨林22–27°C清凉，晴雨皆仙境！',
+          dayCostSummary: '百年火车+Skyrail高空缆车套票 AUD $139(≈¥667)', hotel: '凯恩斯海滨酒店 第3/3晚',
+          sunnySummary: '坐 1891 年木质小火车穿过马蹄弯大瀑布上山 → 逛库兰达小镇（考拉园轻抚考拉拍照！）→ 坐 7.5km Skyrail 缆车在雨林树冠滑翔下山！',
+          rainyPlan: '🌧️ 雨天更壮观：雨林云雾升腾、大瀑布水量翻倍，火车与缆车全封闭车厢完全不淋雨！',
+          spots: [{
+            id: 'r3-1', shortPin: '库兰达火车&缆车', time: '09:30 – 16:30', duration: '全天慢游约 7h', name: '库兰达百年观光火车 + 考拉园 + Skyrail 雨林高空缆车', mapQuery: 'Kuranda Koala Gardens, Kuranda QLD', prevOrigin: 'Cairns Central Station QLD', legMode: '🚂观光火车上山 + 🚡缆车下山+接驳车', legTime: '09:30发车', legPrice: '套票含返程巴士', ticketPrice: '火车+缆车套票约 AUD $139(≈¥667)', bookingLevel: 'required', bookingText: '提前1–2周订套票', intro: '《阿凡达》灵感地！小火车上山坐右侧拍列车大拐弯瀑布大片，昆州考拉园还能在饲养员托举下近距离轻抚考拉！', commuteDetail: '步行10m到 Cairns Central 上火车，下午缆车终点巴士送回酒店。', priceDetail: '• 火车+缆车套票约 ¥667；考拉园门票可选 AUD $22。', rainAlt: '🌧️ 全封闭车厢晴雨通吃。', tips: '火车在巴伦瀑布站会停车10分钟给大家拍照！'
+          }]
+        },
+        {
+          day: 4, date: '9月14日 (周二)', city: '凯恩斯 → 悉尼',
+          baseHotelQuery: 'Cairns Esplanade', travelMode: 'transit',
+          title: '海滨热带芒果松饼早午餐 · 下午飞回悉尼连住 5 晚',
+          wakeTime: '09:30 自然醒', weatherTip: '登机包放一件外套落地悉尼穿！',
+          dayCostSummary: '飞悉尼机票≈¥880 + 两端机场打车人均≈¥165', hotel: '悉尼 Town Hall 酒店 第1/5晚',
+          sunnySummary: '睡饱在海边喝芒果冰沙散步，下午飞抵悉尼入住 Town Hall 酒店，无缝开启悉尼歌剧院、音乐剧与扫货之旅！',
+          rainyPlan: '🌧️ 可逛免费凯恩斯美术馆与海景咖啡馆再去机场。',
+          spots: [{
+            id: 'r4-1', shortPin: '凯恩斯飞回悉尼', time: '10:00 – 19:00', duration: '慢晨+3h飞行入住', name: '凯恩斯海滨早午餐 → 飞往悉尼 (CNS→SYD) → 入住悉尼酒店', mapQuery: 'Cairns Airport QLD', prevOrigin: 'Cairns Esplanade QLD', legMode: '🚗Uber去机场 → ✈️飞悉尼 → 🚗Uber到酒店', legTime: '下午航班飞行3h', legPrice: '两端Uber人均合计约 ¥165', ticketPrice: '单程含行李机票约 ¥880', bookingLevel: 'required', bookingText: '提前订下午航班', intro: '从28°C珊瑚海切换回繁华悉尼港，一次集齐澳洲自然与人文两大巅峰！', commuteDetail: '落地悉尼国内航站楼后两人拼 Uber 直达 Town Hall。', priceDetail: '• 机票约 ¥880 + 打车人均 ¥165。', rainAlt: '🌧️ 航站楼顺畅衔接。', tips: '下机前穿上外套防温差！'
+          }]
+        },
+        SYDNEY_DAYS_5_TO_9[0], SYDNEY_DAYS_5_TO_9[1], SYDNEY_DAYS_5_TO_9[2], SYDNEY_DAYS_5_TO_9[3], SYDNEY_DAYS_5_TO_9[4]
+      ]
+    };
+
+    var HOTEL_AREAS = {
+      sydney: [
+        { rank: '首推 No.1 · 省钱便利全能王', name: 'Town Hall / World Square / QVB 周边', mapQuery: 'Queen Victoria Building, George St, Sydney NSW', stations: 'Town Hall 火车/轻轨 · Gadigal 地铁站', priceRange: '高分四星/公寓 AUD $230–330/晚（人均 ¥550–790）', safetyScore: '9.6 / 10', whyGirls: '最后两天 QVB/Pitt St/药房买重了走 3 分钟送回房间！推荐 Meriton Suites Kent St、Fraser Suites 或 Rydges World Square。', pros: ['最后两天购物零距离', '超市中餐药房全在楼下', '主干道夜归极安全'], avoidTip: '深夜别穿行黑灯的 Hyde Park 公园内部。' },
+        { rank: '备选 No.2 · 推窗见海港', name: 'Circular Quay / The Rocks（环形码头）', mapQuery: 'Circular Quay, Sydney NSW', stations: 'Circular Quay 火车/渡轮/轻轨总站', priceRange: 'AUD $360–620+/晚（人均 ¥860–1,500）', safetyScore: '9.8 / 10', whyGirls: '出门见歌剧院与渡轮码头，预算充裕可选！', pros: ['海港风景天花板', '歌剧院散场走5分钟回房'], avoidTip: '控预算优先住 Town Hall 坐轻轨过来仅 8 分钟。' }
+      ],
+      melbourne: [
+        { rank: '首推 No.1 · 免费电车+小团接送王', name: 'Flinders St / Collins St（CBD 核心）', mapQuery: 'Flinders Street Railway Station, Melbourne VIC', stations: 'Flinders St 站 · 免费电车全覆盖', priceRange: 'AUD $195–310/晚（人均 ¥470–745）', safetyScore: '9.5 / 10', whyGirls: '出门电车全免费 ($0)，大洋路小团就在楼下圣保罗座堂接（推荐 Holiday Inn Express Little Collins、Rendezvous）。', pros: ['CBD电车免费$0', '大洋路接送最近', '步行看音乐剧'], avoidTip: '避开 King St 酒吧街紧邻路段。' },
+        { rank: '备选 No.2 · SkyBus 零换乘', name: 'Southern Cross 站东侧', mapQuery: 'Southern Cross Station, Melbourne VIC', stations: 'SkyBus 机场快线终点', priceRange: 'AUD $180–270/晚（人均 ¥430–650）', safetyScore: '8.8 / 10', whyGirls: '下机场大巴走 3 分钟进酒店，同样在免费电车区！', pros: ['免拖箱子爬坡', '房价极友好'], avoidTip: '选东侧往市区方向，别选 Docklands 最西头。' }
+      ],
+      cairns: [
+        { rank: '凯恩斯首推 · 码头步行圈', name: 'Cairns Esplanade 南段（紧邻游船码头）', mapQuery: 'Reef Fleet Terminal, Cairns QLD', stations: '步行 6 分钟上大堡礁游船！', priceRange: '白菜价 AUD $160–240/晚（人均仅 ¥385–575！）', safetyScore: '9.2 / 10', whyGirls: '房价仅悉尼一半！住 Oaks Cairns、Mantra Esplanade 或 Crystalbrook，步行上船立省每人 $35 接送费！', pros: ['房价超便宜', '步行登船省钱', '楼下即泻湖夜市'], avoidTip: '住市中心 Esplanade 南段，别住远郊。' }
+      ]
+    };
+
+    var MUSICALS_DATA = [
+      { id: 'm1', city: '悉尼', cnTitle: '《帕丁顿熊音乐剧》Paddington', badge: '2027.9 澳洲首演 · 全球第3城', type: 'err', venue: 'Capitol Theatre (Haymarket)', mapQuery: 'Capitol Theatre, Sydney NSW', dates: '2027年9月开演', price: '周中好座约 AUD $130–185 (≈¥620–890)', tip: '西区爆款新剧！去 paddingtonthemusical.com.au 加 Waitlist，从 Town Hall 走 8m 即到！' },
+      { id: 'm2', city: '悉尼', cnTitle: '《悲惨世界》40周年纪念全本', badge: '悉尼歌剧院驻演 · 8/27–10/10', type: 'warn', venue: 'Sydney Opera House', mapQuery: 'Sydney Opera House, Sydney NSW', dates: '2027年8月27日 – 10月10日', price: '约 AUD $139–229 (≈¥665–1,100)', tip: '在悉尼歌剧院内部看史诗全本！周二至周四晚场比周末省 AUD $30–50！' },
+      { id: 'm3', city: '墨尔本', cnTitle: '《本杰明·巴顿奇事（返老还童）》', badge: '奥利弗大奖 · 9/3–10/2定档', type: 'err', venue: 'Arts Centre Melbourne', mapQuery: 'Arts Centre Melbourne, VIC', dates: '2027年9月3日 – 10月2日', price: '约 AUD $115–165 (≈¥550–790)', tip: '墨尔本档期最稳催泪神作，就在 NGV 隔壁！' },
+      { id: 'm4', city: '墨尔本', cnTitle: '《肉馅行动》Operation Mincemeat', badge: '奥利弗+托尼双料神剧 · 9月首演', type: 'err', venue: 'Comedy Theatre CBD', mapQuery: 'Comedy Theatre, Melbourne VIC', dates: '2027年9月起澳洲首演', price: '约 AUD $120–175 (≈¥575–840)', tip: '节奏堪比《汉密尔顿》的谍战喜剧（《汉密尔顿》2027暂无澳巡）！' }
+    ];
+
+    var FOOD_DATA = [
+      { id: 'f1', city: '悉尼', name: '新悉尼鱼市场 (New Fish Market)', mapQuery: 'Sydney Fish Market, Glebe NSW', price: '人均 AUD $35–55(≈¥170–265)', dish: '2026全新波浪地标！现开岩蚝($18/半打)、海胆、刺身、芝士焗龙虾', tip: 'L1轻轨直达，15:00前最全！' },
+      { id: 'f2', city: '悉尼', name: 'Black Star Pastry (QVB对面)', mapQuery: 'Black Star Pastry Sydney CBD', price: '每块 AUD $12(≈¥58)', dish: '全澳最火【草莓西瓜蛋糕】玫瑰清香配爽脆西瓜！', tip: '就在 QVB 斜对面 The Galeries 二楼书店里！' },
+      { id: 'f3', city: '悉尼', name: 'Bills Bondi / Spice Alley 夜市巷', mapQuery: 'Bills Bondi Beach NSW', price: '人均 AUD $18–28(≈¥86–135)', dish: '云朵香蕉松饼(两人分食) / 红灯笼小巷 $18 叻沙海南鸡饭', tip: '澳洲分量大，两女生点1甜1咸分食最省钱！' },
+      { id: 'f4', city: '墨尔本/凯恩斯', name: 'Lune 可颂 & Tipo 00 意面 / 凯恩斯 Prawn Star 渔船', mapQuery: 'Lune Croissanterie Melbourne CBD', price: '可颂$9 · 意面$34 · 渔船拼盘人均$42', dish: '世界最强酥脆牛角包 · 黑松露意面 · 游艇码头渔船冰镇大虾', tip: 'Tipo 00 提前两周官网约位！' }
+    ];
+
+    var SHOPPING_ITEMS = [
+      { id: 'sh1', cat: '本土护肤', name: 'Aesop 伊索 / Jurlique 茱莉蔻', detail: '赋活护手霜约 AUD $43(≈¥206)，比国内省25%–35%，同店满 $300 再退 9.09% 税！' },
+      { id: 'sh2', cat: '国民药房', name: 'Chemist Warehouse 药房', detail: 'Lucas 木瓜膏 $5.5、澳洲 Cancer Council 防晒霜 $12、Swisse 常打半价！' },
+      { id: 'sh3', cat: '半价超市', name: 'Coles / Woolworths（每周三换半价黄标！）', detail: '1/2 Price 半价买 Tim Tam 饼干只要 AUD $3(≈¥14)！' },
+      { id: 'sh4', cat: '手工巧克力', name: 'Haigh\'s Chocolates (QVB 百年店)', detail: '国宝级青蛙手工巧克力约 AUD $12–35。' }
+    ];
+
+    var PREP_CHECKLIST = [
+      { phase: '1. 签证机酒与抢票（出发前 3–5 个月）', items: [
+        { id: 'p1', text: '申请澳洲 600 签证（网申 AUD $195 + 录指纹，合计约 ¥1,150）', tag: '签证' },
+        { id: 'p2', text: '敲定路线 A / B / C 并买好内陆含行李机票（Qantas / Virgin Choice）', tag: '路线' },
+        { id: 'p3', text: '预订核心安全区双床房 Twin Room（优先可免费取消）', tag: '酒店' },
+        { id: 'p4', text: '官网抢周二至周四晚场音乐剧门票（每张立省 ¥150–240）', tag: '音乐剧' }
+      ]},
+      { phase: '2. 必装 App 与打包红线（出发前 1–2 周）', items: [
+        { id: 'p5', text: 'iPhone 装好 Google Maps、Uber、TripView、PTV、My TRS Claim', tag: 'App' },
+        { id: 'p6', text: '每人各自绑 1 张独立 Visa/Mastercard 到 Apple Pay（两人不能刷同一张卡坐公交！）', tag: '刷卡' },
+        { id: 'p7', text: '带连帽防风防水外套、墨镜、SPF50+防晒、国内三孔插线板、晕车/晕船药', tag: '打包' },
+        { id: 'p8', text: '清空一切肉干水果种子；带药与茶叶务必在入境卡勾选 YES 申报！', tag: '检疫' }
+      ]}
+    ];
+
+    // =========================================================================
+    // 5. Navigation Setup
+    // =========================================================================
+    var NAV_TABS = [
+      { id: 'imap', label: '🗺️ 互动地图', icon: 'compass' },
+      { id: 'routes', label: '三路线&气候', icon: 'map' },
+      { id: 'itinerary', label: '每日行程+价格', icon: 'pin' },
+      { id: 'commute', label: '通勤票价百科', icon: 'train' },
+      { id: 'budget', label: '1.5–2w预算表', icon: 'coin' },
+      { id: 'hotels', label: '住宿推荐', icon: 'hotel' },
+      { id: 'musicals', label: '2027音乐剧', icon: 'ticket' },
+      { id: 'foodshop', label: '美食·购物·退税', icon: 'bag' },
+      { id: 'safety', label: '安全&清单', icon: 'shield' }
+    ];
+
+    var BOTTOM_TABS = [
+      { id: 'imap', label: '互动地图', icon: 'compass' },
+      { id: 'routes', label: '选路线', icon: 'map' },
+      { id: 'itinerary', label: '每日行程', icon: 'pin' },
+      { id: 'commute', label: '通勤票价', icon: 'train' },
+      { id: 'budget', label: '算预算', icon: 'coin' }
+    ];
+
+    function iconSvg(name, cls) {
+      var c = cls || 'icon';
+      var map = {
+        compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+        map: '<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>',
+        pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+        train: '<rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/>',
+        coin: '<circle cx="12" cy="12" r="9"/><path d="M14.8 9A2 2 0 0 0 13 8h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1-1.8-1"/><path d="M12 6v2m0 8v2"/>',
+        hotel: '<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/>',
+        ticket: '<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>',
+        bag: '<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+        shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+      };
+      return '<svg class="' + c + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + (map[name] || '') + '</svg>';
+    }
+
+    function esc(s) { return s ? String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;') : ''; }
+    function ml(s) { return esc(s).replace(/\n/g, '<br/>'); }
+
+    function renderNavs() {
+      var rMeta = ROUTES_META[state.selectedRoute];
+      var titleEl = document.getElementById('top-route-title');
+      if (titleEl) titleEl.textContent = '澳洲9日 · ' + rMeta.shortName;
+
+      document.getElementById('desktop-nav').innerHTML = NAV_TABS.map(function (t) {
+        return '<button class="nav-tab ' + (state.activeTab === t.id ? 'active' : '') + '" onclick="switchTab(\'' + t.id + '\')">' +
+          iconSvg(t.icon, 'icon icon-sm') + '<span>' + t.label + '</span></button>';
+      }).join('');
+
+      document.getElementById('bottom-bar').innerHTML = '<div class="bottom-bar-inner">' +
+        BOTTOM_TABS.map(function (t) {
+          return '<button class="bottom-tab ' + (state.activeTab === t.id ? 'active' : '') + '" onclick="switchTab(\'' + t.id + '\')">' +
+            iconSvg(t.icon, 'icon-lg') + '<span>' + t.label + '</span></button>';
+        }).join('') + '</div>';
+    }
+
+    function switchTab(id) {
+      state.activeTab = id; saveState(); renderNavs(); renderView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectRoute(rId, goTab) {
+      state.selectedRoute = rId;
+      state.mapDayFilter = 0;
+      if (rId === 'reef') { state.hotelCity = 'cairns'; state.mapRegion = 'cairns'; state.selectedPinId = 'c_reef'; }
+      else if (rId === 'mel') { state.hotelCity = 'melbourne'; state.mapRegion = 'melbourne'; state.selectedPinId = 'm_flinders'; }
+      else { state.hotelCity = 'sydney'; state.mapRegion = 'sydney'; state.selectedPinId = 'p_opera'; }
+      resetMapZoom(true);
+      if (goTab) state.activeTab = goTab;
+      saveState(); renderNavs(); renderView();
+    }
+
+    function openDayOnInteractiveMap(dayNum) {
+      var seqObj = DAY_MAP_SEQUENCES[state.selectedRoute][dayNum];
+      if (seqObj) {
+        state.mapRegion = seqObj.region;
+        state.mapDayFilter = dayNum;
+        state.mapCatFilter = 'all';
+        if (seqObj.pins && seqObj.pins.length) state.selectedPinId = seqObj.pins[0];
+      }
+      resetMapZoom(true);
+      state.activeTab = 'imap';
+      saveState(); renderNavs(); renderView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // 6. Interactive Vector Map Renderer + Pan/Zoom Engine (TAB: imap)
+    // =========================================================================
+    function getBaseMapSvgContent(region) {
+      if (region === 'australia') {
+        return '' +
+          '<rect x="0" y="0" width="800" height="500" fill="var(--map-sea)"/>' +
+          '<!-- Great Barrier Reef turquoise shoals -->' +
+          '<ellipse cx="595" cy="110" rx="52" ry="75" transform="rotate(-24 595 110)" fill="var(--map-reef)" opacity="0.85"/>' +
+          '<!-- Australia Mainland Simplified Accurate Silhouette -->' +
+          '<path d="M 145,165 L 220,115 L 315,98 L 365,62 L 435,88 L 462,135 L 495,62 L 535,88 L 575,162 L 642,248 L 635,315 L 605,368 L 568,422 L 485,438 L 405,448 L 335,412 L 265,385 L 165,388 L 118,342 L 105,245 Z" fill="var(--map-land)" stroke="var(--border)" stroke-width="2.5"/>' +
+          '<!-- Tasmania -->' +
+          '<path d="M 485,465 L 532,465 L 522,494 L 492,492 Z" fill="var(--map-land)" stroke="var(--border)" stroke-width="2"/>' +
+          '<!-- Route Flight & Road Arcs -->' +
+          '<path d="M 615,342 Q 520,365 472,432" fill="none" stroke="#0e746c" stroke-width="2.6" class="route-dash"/>' +
+          '<path d="M 472,432 Q 425,452 382,448" fill="none" stroke="#c2410c" stroke-width="2.6" class="route-dash"/>' +
+          '<path d="M 615,342 Q 645,215 548,105" fill="none" stroke="#1d4ed8" stroke-width="2.6" class="route-dash"/>' +
+          '<path d="M 615,342 L 560,325 M 615,342 L 632,298" fill="none" stroke="#15803d" stroke-width="2.4"/>' +
+          '<text x="275" y="265" fill="var(--map-label)" font-size="18" font-weight="700" opacity="0.45">AUSTRALIA 澳大利亚</text>' +
+          '<text x="642" y="102" fill="#0e746c" font-size="11.5" font-weight="700">珊瑚海 & 大堡礁 (9月旱季28°C)</text>' +
+          '<text x="530" y="395" fill="#0e746c" font-size="11" font-weight="600">✈ 悉尼↔墨尔本 1.5h (约¥580)</text>' +
+          '<text x="625" y="218" fill="#1d4ed8" font-size="11" font-weight="600">✈ 悉尼↔凯恩斯 3h (约¥880)</text>';
+      }
+
+      if (region === 'sydney') {
+        return '' +
+          '<rect x="0" y="0" width="800" height="500" fill="var(--map-sea)"/>' +
+          '<!-- North Shore & Manly Landmass -->' +
+          '<path d="M 0,0 L 745,0 L 742,148 L 675,155 L 655,112 L 615,148 L 565,168 L 495,162 L 435,158 L 368,162 L 290,140 L 185,155 L 0,145 Z" fill="var(--map-land)" stroke="var(--border)" stroke-width="2"/>' +
+          '<!-- South Shore / Sydney CBD / Eastern Suburbs / Inner West Landmass -->' +
+          '<path d="M 0,165 L 215,195 L 255,285 L 218,335 L 265,350 L 302,295 L 308,242 L 348,202 L 382,202 L 395,242 L 428,192 L 445,222 L 498,210 L 518,248 L 575,242 L 642,225 L 688,202 L 718,245 L 702,345 L 682,418 L 665,500 L 0,500 Z" fill="var(--map-land)" stroke="var(--border)" stroke-width="2"/>' +
+          '<!-- Blue Mountains & Royal Botanic Green Parks -->' +
+          '<ellipse cx="88" cy="268" rx="68" ry="82" fill="var(--map-park)" opacity="0.85"/>' +
+          '<ellipse cx="478" cy="248" rx="38" ry="36" fill="var(--map-park)"/>' +
+          '<rect x="415" y="292" width="32" height="44" rx="8" fill="var(--map-park)"/>' +
+          '<!-- Town Hall Safe Hotel & Shopping Hub Highlight Circle -->' +
+          '<circle cx="382" cy="318" r="42" fill="rgba(14,116,108,0.12)" stroke="#0e746c" stroke-width="1.6" stroke-dasharray="4 3"/>' +
+          '<!-- Sydney Harbour Bridge Icon -->' +
+          '<path d="M 368,162 L 368,204 M 362,184 Q 368,168 374,184" stroke="#64748b" stroke-width="4" fill="none"/>' +
+          '<!-- Ferry Routes (F1 Manly & F2 Taronga) -->' +
+          '<path d="M 392,235 Q 475,185 545,135" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 4"/>' +
+          '<path d="M 392,235 Q 565,195 698,105" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4 4"/>' +
+          '<!-- BMT Train West & T4 East & Light Rail -->' +
+          '<path d="M 382,318 L 355,392 L 95,260" fill="none" stroke="var(--map-road)" stroke-width="3"/>' +
+          '<path d="M 382,318 L 560,335 L 685,342" fill="none" stroke="var(--map-road)" stroke-width="2.5"/>' +
+          '<path d="M 392,235 L 382,318 L 368,372 L 342,468" fill="none" stroke="var(--map-road)" stroke-width="2.5"/>' +
+          '<!-- Labels -->' +
+          '<text x="565" y="200" fill="#0284c7" font-size="11.5" font-weight="700">悉尼港 Sydney Harbour (F1/F2渡轮)</text>' +
+          '<text x="712" y="285" fill="var(--map-label)" font-size="12" font-weight="700" writing-mode="tb">南太平洋海岸</text>' +
+          '<text x="35" y="195" fill="#15803d" font-size="11.5" font-weight="700">西郊：蓝山国家公园圈 (火车2h)</text>' +
+          '<text x="335" y="286" fill="#0e746c" font-size="10.5" font-weight="700">Town Hall 300m购物住宿圈</text>';
+      }
+
+      if (region === 'melbourne') {
+        return '' +
+          '<rect x="0" y="0" width="800" height="500" fill="var(--map-land)"/>' +
+          '<!-- Southern Ocean & Port Phillip Bay -->' +
+          '<path d="M 0,375 Q 95,388 185,412 Q 255,425 312,385 L 385,395 Q 485,405 568,455 L 610,500 L 0,500 Z" fill="var(--map-sea)"/>' +
+          '<!-- Yarra River Flowing through Melbourne -->' +
+          '<path d="M 800,295 Q 640,308 515,302 Q 415,298 312,385" fill="none" stroke="var(--map-sea)" stroke-width="18" stroke-linecap="round"/>' +
+          '<!-- Twelve Apostles Sea Stacks Illustration -->' +
+          '<circle cx="62" cy="415" r="5" fill="#d97706"/><circle cx="78" cy="422" r="7" fill="#d97706"/><circle cx="96" cy="418" r="4.5" fill="#d97706"/>' +
+          '<!-- Divider between Great Ocean Road Inset & Melbourne CBD -->' +
+          '<line x1="285" y1="20" x2="285" y2="380" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 5"/>' +
+          '<!-- Great Ocean Road Winding Cliff Highway -->' +
+          '<path d="M 355,210 L 255,345 Q 215,385 185,398 Q 135,405 76,382" fill="none" stroke="#c2410c" stroke-width="3" stroke-dasharray="6 4"/>' +
+          '<!-- FREE TRAM ZONE GREEN HIGHLIGHT BOX -->' +
+          '<rect x="342" y="72" width="295" height="216" rx="14" fill="rgba(21,128,61,0.11)" stroke="#15803d" stroke-width="2" stroke-dasharray="6 4"/>' +
+          '<text x="354" y="92" fill="#15803d" font-size="11.5" font-weight="800">🚋 墨尔本免费电车区 Free Tram Zone (AUD $0)</text>' +
+          '<!-- NGV & Royal Botanic Parkland -->' +
+          '<ellipse cx="575" cy="368" rx="58" ry="38" fill="var(--map-park)"/>' +
+          '<!-- Sandringham Train to Brighton -->' +
+          '<path d="M 518,274 L 588,455" fill="none" stroke="#db2777" stroke-width="2.4" stroke-dasharray="4 4"/>' +
+          '<text x="32" y="52" fill="var(--map-label)" font-size="13" font-weight="800">◀ 西线：大洋路 & 十二门徒一日团</text>' +
+          '<text x="38" y="468" fill="#0284c7" font-size="12" font-weight="700">南冰洋 Southern Ocean</text>' +
+          '<text x="415" y="468" fill="#0284c7" font-size="12" font-weight="700">菲利普港湾 Port Phillip Bay</text>';
+      }
+
+      // Cairns & Great Barrier Reef
+      return '' +
+        '<rect x="0" y="0" width="800" height="500" fill="var(--map-sea)"/>' +
+        '<!-- Tropical North Queensland Mainland & Rainforest Mountains -->' +
+        '<path d="M 0,0 L 335,0 L 352,95 L 385,175 L 415,265 L 418,365 L 385,500 L 0,500 Z" fill="var(--map-land)" stroke="var(--border)" stroke-width="2"/>' +
+        '<path d="M 0,0 L 265,0 L 285,220 L 235,440 L 0,460 Z" fill="var(--map-park)"/>' +
+        '<!-- Outer Great Barrier Reef Coral Lagoons -->' +
+        '<ellipse cx="668" cy="242" rx="82" ry="118" fill="var(--map-reef)" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="6 4"/>' +
+        '<ellipse cx="535" cy="398" rx="28" ry="20" fill="var(--map-land)" stroke="#15803d" stroke-width="1.5"/>' +
+        '<!-- Kuranda Railway & Skyrail Lines -->' +
+        '<path d="M 334,295 Q 215,265 138,138" fill="none" stroke="#b45309" stroke-width="3" stroke-dasharray="5 3"/>' +
+        '<path d="M 138,138 Q 265,135 352,205" fill="none" stroke="#6d28d9" stroke-width="2.5"/>' +
+        '<!-- Catamaran Route to Outer Reef -->' +
+        '<path d="M 406,354 Q 540,305 668,242" fill="none" stroke="#0284c7" stroke-width="3" stroke-dasharray="6 4"/>' +
+        '<text x="38" y="65" fill="#15803d" font-size="13" font-weight="800">世界自然遗产：库兰达热带雨林</text>' +
+        '<text x="585" y="105" fill="#0e746c" font-size="13" font-weight="800">世界自然遗产：外大堡礁珊瑚海</text>' +
+        '<text x="485" y="292" fill="#0284c7" font-size="11" font-weight="700">⛴️ 高速双体船 90m 直达外堡礁浮台</text>';
+    }
+
+    function pinColor(cat) {
+      if (cat === 'hotel') return '#0e746c';
+      if (cat === 'theatre') return '#7c3aed';
+      if (cat === 'food') return '#c2410c';
+      return '#1d4ed8';
+    }
+
+    function renderInteractiveMapTab() {
+      var reg = state.mapRegion;
+      var pins = MAP_PINS[reg] || MAP_PINS.sydney;
+
+      // Check active day sequence if mapDayFilter > 0
+      var activeSeqPins = [];
+      var seqObj = state.mapDayFilter > 0 ? (DAY_MAP_SEQUENCES[state.selectedRoute][state.mapDayFilter] || null) : null;
+      if (seqObj && seqObj.region === reg) {
+        activeSeqPins = seqObj.pins;
+      }
+
+      // Build Polyline for selected Day
+      var dayRouteLineSvg = '';
+      if (activeSeqPins.length > 1) {
+        var pts = activeSeqPins.map(function (pid) {
+          var found = pins.find(function (p) { return p.id === pid; });
+          return found ? (found.x + ',' + found.y) : null;
+        }).filter(Boolean);
+        if (pts.length > 1) {
+          dayRouteLineSvg = '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#e11d48" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" class="route-dash"/>';
+        }
+      }
+
+      // Build SVG Pins
+      var pinsSvg = pins.map(function (p) {
+        var catMatch = state.mapCatFilter === 'all' || p.cat === state.mapCatFilter;
+        var dayMatch = activeSeqPins.length === 0 || activeSeqPins.indexOf(p.id) > -1;
+        var dimmed = !(catMatch && dayMatch);
+        var isSel = state.selectedPinId === p.id;
+        var col = pinColor(p.cat);
+        var orderIdx = activeSeqPins.indexOf(p.id);
+        var badgeNum = orderIdx > -1 ? (orderIdx + 1) : '';
+        var shortText = p.label.replace(/^[🏨🎭✈️⛰️🐬🐠🌲]\s*/, '').split(' ')[0];
+
+        return '<g class="pin-group ' + (dimmed ? 'dimmed' : '') + '" onclick="selectMapPin(\'' + p.id + '\', event)">' +
+          (isSel ? '<circle cx="' + p.x + '" cy="' + p.y + '" r="15" fill="' + col + '" class="pin-pulse"/>' : '') +
+          '<circle cx="' + p.x + '" cy="' + p.y + '" r="' + (isSel ? '11' : '8.5') + '" fill="' + col + '" stroke="#ffffff" stroke-width="2.4"/>' +
+          (badgeNum ? '<text x="' + p.x + '" y="' + (p.y + 3.8) + '" text-anchor="middle" fill="#ffffff" font-size="10.5" font-weight="800">' + badgeNum + '</text>' : '') +
+          '<rect x="' + (p.x + 12) + '" y="' + (p.y - 10) + '" width="' + (shortText.length * 11 + 12) + '" height="19" rx="5" fill="var(--surface)" stroke="' + (isSel ? col : 'var(--border)') + '" stroke-width="' + (isSel ? '1.8' : '1') + '" opacity="0.94"/>' +
+          '<text x="' + (p.x + 18) + '" y="' + (p.y + 3.5) + '" fill="var(--text)" font-size="10.8" font-weight="' + (isSel ? '800' : '600') + '">' + esc(shortText) + '</text>' +
+        '</g>';
+      }).join('');
+
+      var selectedPin = pins.find(function (p) { return p.id === state.selectedPinId; }) || pins[0];
+
+      // Day filter buttons (Day 1..9)
+      var dayFilterBtns = '<button class="seg-btn ' + (state.mapDayFilter === 0 ? 'active' : '') + '" onclick="setMapDayFilter(0)">全部地标</button>' +
+        [1, 2, 3, 4, 5, 6, 7, 8].map(function (dn) {
+          return '<button class="seg-btn ' + (state.mapDayFilter === dn ? 'active' : '') + '" onclick="setMapDayFilter(' + dn + ')">Day ' + dn + ' 路线</button>';
+        }).join('');
+
+      return '<div class="stack fade-in">' +
+        // Top Map Control Card
+        '<section class="card stack-sm" style="padding:14px 16px;">' +
+          '<div class="flex-between">' +
+            '<div>' +
+              '<h2 class="h2">🗺️ 可缩放互动地图板块（点击任意气泡看详情/价格/导航）</h2>' +
+              '<p class="text-xxs muted" style="margin:2px 0 0;">支持手指/鼠标拖动平移、滚轮与按钮缩放；点选下方 Day 1–8 可在地图上自动画出当天游玩连线！</p>' +
+            '</div>' +
+            '<div class="flex-row">' +
+              '<span class="text-xs" style="font-weight:700;">当前路线：</span>' +
+              '<select onchange="selectRoute(this.value, false)" style="background:var(--surface-soft);border:1px solid var(--border);border-radius:9px;padding:5px 9px;font-size:12px;font-weight:600;">' +
+                '<option value="nsw" ' + (state.selectedRoute === 'nsw' ? 'selected' : '') + '>路线A：悉尼+周边(最省)</option>' +
+                '<option value="mel" ' + (state.selectedRoute === 'mel' ? 'selected' : '') + '>路线B：悉尼+墨尔本+十二门徒</option>' +
+                '<option value="reef" ' + (state.selectedRoute === 'reef' ? 'selected' : '') + '>路线C：悉尼+凯恩斯大堡礁</option>' +
+              '</select>' +
+            '</div>' +
+          '</div>' +
+
+          // Region Switcher
+          '<div class="flex-row" style="overflow-x:auto;padding-bottom:2px;">' +
+            '<button class="seg-btn ' + (reg === 'australia' ? 'active' : '') + '" onclick="switchMapRegion(\'australia\')">🇦🇺 全澳航线总览</button>' +
+            '<button class="seg-btn ' + (reg === 'sydney' ? 'active' : '') + '" onclick="switchMapRegion(\'sydney\')">⛵ 悉尼 & 周边详图</button>' +
+            '<button class="seg-btn ' + (reg === 'melbourne' ? 'active' : '') + '" onclick="switchMapRegion(\'melbourne\')">🚋 墨尔本(含免费电车区) & 大洋路</button>' +
+            '<button class="seg-btn ' + (reg === 'cairns' ? 'active' : '') + '" onclick="switchMapRegion(\'cairns\')">🐠 凯恩斯 & 外大堡礁详图</button>' +
+          '</div>' +
+
+          // Day Route Highlighter + Category Filter
+          '<div class="flex-between" style="gap:8px;padding-top:4px;border-top:1px solid var(--border-soft);">' +
+            '<div class="day-strip" style="flex:1;">' + dayFilterBtns + '</div>' +
+            '<div class="flex-row">' +
+              '<button class="pill-btn ' + (state.mapCatFilter === 'all' ? 'primary' : '') + '" onclick="state.mapCatFilter=\'all\';renderView()">全部</button>' +
+              '<button class="pill-btn ' + (state.mapCatFilter === 'spot' ? 'primary' : '') + '" onclick="state.mapCatFilter=\'spot\';renderView()">景点</button>' +
+              '<button class="pill-btn ' + (state.mapCatFilter === 'hotel' ? 'primary' : '') + '" onclick="state.mapCatFilter=\'hotel\';renderView()">住宿圈</button>' +
+              '<button class="pill-btn ' + (state.mapCatFilter === 'theatre' ? 'primary' : '') + '" onclick="state.mapCatFilter=\'theatre\';renderView()">剧院</button>' +
+              '<button class="pill-btn ' + (state.mapCatFilter === 'food' ? 'primary' : '') + '" onclick="state.mapCatFilter=\'food\';renderView()">美食</button>' +
+            '</div>' +
+          '</div>' +
+        '</section>' +
+
+        // Split Interactive Map Stage + Live Inspector Card
+        '<div class="map-layout">' +
+          // Left: SVG Pan & Zoom Map Canvas
+          '<div class="map-stage" id="map-stage">' +
+            '<svg id="interactive-svg" class="map-svg" viewBox="' + mapViewBox.x + ' ' + mapViewBox.y + ' ' + mapViewBox.w + ' ' + mapViewBox.h + '" preserveAspectRatio="xMidYMid slice">' +
+              getBaseMapSvgContent(reg) +
+              dayRouteLineSvg +
+              pinsSvg +
+            '</svg>' +
+            '<div class="map-legend">' +
+              '<span><i class="legend-dot" style="background:#1d4ed8;"></i>景点</span>' +
+              '<span><i class="legend-dot" style="background:#0e746c;"></i>推荐住宿圈</span>' +
+              '<span><i class="legend-dot" style="background:#7c3aed;"></i>音乐剧院</span>' +
+              '<span><i class="legend-dot" style="background:#c2410c;"></i>美食/市集</span>' +
+              (state.mapDayFilter > 0 ? '<span style="color:#e11d48;font-weight:700;">--- Day ' + state.mapDayFilter + ' 游玩轨迹</span>' : '') +
+            '</div>' +
+            '<div class="map-zoom-controls">' +
+              '<button class="zoom-btn" onclick="zoomMap(0.75)" title="放大">＋</button>' +
+              '<button class="zoom-btn" onclick="zoomMap(1.33)" title="缩小">－</button>' +
+              '<button class="zoom-btn" onclick="resetMapZoom(false)" title="复位地图">⟲</button>' +
+            '</div>' +
+          '</div>' +
+
+          // Right: Selected Pin Rich Detail Inspector
+          '<aside class="card stack-sm" id="pin-inspector">' +
+            '<div class="flex-between">' +
+              '<span class="badge b-brand">📍 当前选中地标</span>' +
+              (selectedPin.dayRef ? '<button class="pill-btn" onclick="state.selectedDay=' + selectedPin.dayRef + ';switchTab(\'itinerary\')">查看 Day ' + selectedPin.dayRef + ' 完整日程 →</button>' : '') +
+            '</div>' +
+            '<h3 class="h2">' + esc(selectedPin.label) + '</h3>' +
+            '<div class="soft-box text-xs stack-sm" style="gap:6px;">' +
+              '<div><strong>💰 价格/门票参考：</strong><span style="color:var(--brand);font-weight:700;">' + esc(selectedPin.price) + '</span></div>' +
+              '<div><strong>🚇 怎么去 & 通勤：</strong><span class="muted">' + esc(selectedPin.commute) + '</span></div>' +
+            '</div>' +
+            '<p class="text-xs muted" style="margin:0;line-height:1.65;">' + esc(selectedPin.desc) + '</p>' +
+
+            (selectedPin.zoomTarget ? '<button class="pill-btn primary" style="justify-content:center;padding:9px;" onclick="switchMapRegion(\'' + selectedPin.zoomTarget + '\')">🔍 放大进入该城市详细互动地图 →</button>' : '') +
+
+            '<div class="flex-row" style="padding-top:4px;">' +
+              '<a href="' + gmapSearchUrl(selectedPin.mapQuery) + '" target="_blank" rel="noopener" class="pill-btn gmap" style="flex:1;justify-content:center;padding:8px;">📍 打开 Google Maps App 导航</a>' +
+              '<button class="pill-btn" style="padding:8px;" onclick="state.showPinGoogleEmbed=!state.showPinGoogleEmbed;renderView()">' + (state.showPinGoogleEmbed ? '收起实景' : '🌐 实景地图') + '</button>' +
+            '</div>' +
+
+            (state.showPinGoogleEmbed ? '<div class="map-embed-wrap">' +
+              '<iframe class="map-iframe" loading="lazy" src="' + gmapEmbedSrc(selectedPin.mapQuery) + '"></iframe>' +
+              '<div class="text-xxs muted" style="padding:5px 8px;">注：实景地图需海外网络/VPN；国内免翻墙可直接缩放左侧矢量地图！</div>' +
+            '</div>' : '') +
+
+            // Quick Pin List under Inspector for fast tapping
+            '<div style="border-top:1px solid var(--border-soft);padding-top:10px;">' +
+              '<div class="text-xxs muted" style="font-weight:700;margin-bottom:6px;">快速点选本图地标（共 ' + pins.length + ' 处）：</div>' +
+              '<div style="display:flex;flex-wrap:wrap;gap:5px;max-height:135px;overflow-y:auto;">' +
+                pins.map(function (p) {
+                  var active = p.id === selectedPin.id;
+                  return '<button onclick="focusMapPin(\'' + p.id + '\')" class="badge ' + (active ? 'b-brand' : 'b-soft') + '" style="border:1px solid ' + (active ? 'var(--brand)' : 'transparent') + ';cursor:pointer;padding:4px 8px;">' +
+                    esc(p.label.split(' ')[0]) + '</button>';
+                }).join('') +
+              '</div>' +
+            '</div>' +
+          '</aside>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function switchMapRegion(reg) {
+      state.mapRegion = reg;
+      state.mapDayFilter = 0;
+      var list = MAP_PINS[reg] || [];
+      if (list.length) state.selectedPinId = list[0].id;
+      resetMapZoom(true);
+      saveState();
+      renderView();
+    }
+
+    function setMapDayFilter(dayNum) {
+      state.mapDayFilter = dayNum;
+      if (dayNum > 0) {
+        var seq = DAY_MAP_SEQUENCES[state.selectedRoute][dayNum];
+        if (seq) {
+          if (state.mapRegion !== seq.region) {
+            state.mapRegion = seq.region;
+            resetMapZoom(true);
+          }
+          if (seq.pins && seq.pins.length) state.selectedPinId = seq.pins[0];
+        }
+      }
+      saveState();
+      renderView();
+    }
+
+    function selectMapPin(pinId, evt) {
+      if (evt) evt.stopPropagation();
+      if (dragMoved) return;
+      state.selectedPinId = pinId;
+      saveState();
+      renderView();
+    }
+
+    function focusMapPin(pinId) {
+      state.selectedPinId = pinId;
+      var pins = MAP_PINS[state.mapRegion] || [];
+      var found = pins.find(function (p) { return p.id === pinId; });
+      if (found) {
+        var nw = 460, nh = 288;
+        mapViewBox.w = nw; mapViewBox.h = nh;
+        mapViewBox.x = Math.max(0, Math.min(800 - nw, found.x - nw / 2));
+        mapViewBox.y = Math.max(0, Math.min(500 - nh, found.y - nh / 2));
+      }
+      saveState();
+      renderView();
+    }
+
+    function applyViewBoxToDom() {
+      var svg = document.getElementById('interactive-svg');
+      if (svg) {
+        svg.setAttribute('viewBox', mapViewBox.x.toFixed(1) + ' ' + mapViewBox.y.toFixed(1) + ' ' + mapViewBox.w.toFixed(1) + ' ' + mapViewBox.h.toFixed(1));
+      }
+    }
+
+    function zoomMap(factor) {
+      var cx = mapViewBox.x + mapViewBox.w / 2;
+      var cy = mapViewBox.y + mapViewBox.h / 2;
+      var nw = Math.max(220, Math.min(800, mapViewBox.w * factor));
+      var nh = nw * (500 / 800);
+      mapViewBox.w = nw;
+      mapViewBox.h = nh;
+      mapViewBox.x = Math.max(0, Math.min(800 - nw, cx - nw / 2));
+      mapViewBox.y = Math.max(0, Math.min(500 - nh, cy - nh / 2));
+      applyViewBoxToDom();
+    }
+
+    // Smooth Pointer Drag Pan + Wheel Zoom Binding
+    var isDraggingMap = false;
+    var dragMoved = false;
+    var dragStartPt = { x: 0, y: 0, vx: 0, vy: 0 };
+
+    function bindMapGestures() {
+      var stage = document.getElementById('map-stage');
+      if (!stage) return;
+
+      stage.onpointerdown = function (e) {
+        if (e.target.closest('.map-zoom-controls')) return;
+        isDraggingMap = true;
+        dragMoved = false;
+        dragStartPt = { x: e.clientX, y: e.clientY, vx: mapViewBox.x, vy: mapViewBox.y };
+      };
+
+      stage.onpointermove = function (e) {
+        if (!isDraggingMap) return;
+        var dx = e.clientX - dragStartPt.x;
+        var dy = e.clientY - dragStartPt.y;
+        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) dragMoved = true;
+        if (!dragMoved) return;
+        var rect = stage.getBoundingClientRect();
+        var scaleX = mapViewBox.w / rect.width;
+        var scaleY = mapViewBox.h / rect.height;
+        mapViewBox.x = Math.max(0, Math.min(800 - mapViewBox.w, dragStartPt.vx - dx * scaleX));
+        mapViewBox.y = Math.max(0, Math.min(500 - mapViewBox.h, dragStartPt.vy - dy * scaleY));
+        applyViewBoxToDom();
+      };
+
+      window.onpointerup = function () {
+        isDraggingMap = false;
+        setTimeout(function () { dragMoved = false; }, 40);
+      };
+
+      stage.onwheel = function (e) {
+        e.preventDefault();
+        zoomMap(e.deltaY > 0 ? 1.15 : 0.86);
+      };
+    }
+
+    // =========================================================================
+    // 7. Other Tabs Renderers
+    // =========================================================================
+    function renderRoutes() {
+      var cards = ['nsw', 'mel', 'reef'].map(function (k) {
+        var r = ROUTES_META[k];
+        var sel = state.selectedRoute === k;
+        return '<div class="route-card ' + (sel ? 'selected' : '') + '" onclick="selectRoute(\'' + k + '\', false)">' +
+          '<div class="stack-sm">' +
+            '<div class="flex-between"><span class="badge ' + (k === 'nsw' ? 'b-ok' : k === 'mel' ? 'b-brand' : 'b-blue') + '">' + esc(r.tag) + '</span>' + (sel ? '<span class="badge b-brand">✓ 当前路线</span>' : '') + '</div>' +
+            '<h3 class="h3">' + esc(r.name) + '</h3>' +
+            '<div class="soft-box text-xs stack-sm" style="gap:4px;">' +
+              '<div><strong>💰 全包预估：</strong><span style="color:var(--brand);font-weight:700;">' + esc(r.estTotalRmb) + '</span></div>' +
+              '<div><strong>🏨 住宿：</strong>' + esc(r.hotelsSummary) + '</div>' +
+              '<div><strong>✈️ 内陆飞：</strong>' + esc(r.flightsSummary) + '</div>' +
+              '<div><strong>🌡️ 9月气候：</strong>' + esc(r.weatherSep) + '</div>' +
+            '</div>' +
+            '<p class="text-xs muted" style="margin:0;">' + esc(r.bestFor) + '</p>' +
+          '</div>' +
+          '<div class="flex-row">' +
+            '<button class="pill-btn primary" style="flex:1;justify-content:center;padding:8px;" onclick="event.stopPropagation(); selectRoute(\'' + k + '\', \'imap\')">🗺️ 在互动地图上看</button>' +
+            '<button class="pill-btn" style="flex:1;justify-content:center;padding:8px;" onclick="event.stopPropagation(); selectRoute(\'' + k + '\', \'itinerary\')">📅 看每日日程</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      return '<div class="stack fade-in">' +
+        '<section class="card stack-sm">' +
+          '<div class="callout callout-ok"><strong style="color:var(--ok);">💚 定心丸：¥4,547 买悉尼往返机票非常划算！</strong> 三条高性价比路线全包总价（含已买机票+签证）均在 <strong>1.5万–2万人民币</strong>内！点击任意路线即可同步更新互动地图与预算表：</div>' +
+          '<div class="grid-3">' + cards + '</div>' +
+        '</section>' +
+        '<section class="card stack-sm">' +
+          '<h3 class="h3">🌤️ 9月中旬（9/11–9/19）三地气候对比</h3>' +
+          '<div class="grid-3 text-xs">' +
+            '<div class="soft-box"><strong>🏙️ 悉尼 & 蓝山 (11–21°C)</strong><div class="muted" style="margin-top:4px;">早春干爽阳光多、少雨！白天单衣长裙，早晚薄风衣（蓝山加卫衣）。正值观鲸旺季！</div></div>' +
+            '<div class="soft-box"><strong>☕ 墨尔本 & 大洋路 (9–18°C)</strong><div class="muted" style="margin-top:4px;">初春偏凉「一天四季」，大洋路海风劲吹，必带<strong>连帽防风防水冲锋衣</strong>并配合每日雨天B计划！</div></div>' +
+            '<div class="soft-box"><strong>🐠 凯恩斯大堡礁 (20–29°C)</strong><div class="muted" style="margin-top:4px;"><strong>全年最美旱季巅峰！</strong>几乎无雨、无毒水母、海水24°C清澈见底，带夏装与泳衣！</div></div>' +
+          '</div>' +
+        '</section>' +
+      '</div>';
+    }
+
+    function renderItinerary() {
+      var days = ROUTE_DAYS[state.selectedRoute];
+      var d = days.find(function (x) { return x.day === state.selectedDay; }) || days[1];
+      var wm = state.weatherMode;
+
+      var pills = days.map(function (x) {
+        return '<button class="day-pill ' + (x.day === d.day ? 'active' : '') + '" onclick="state.selectedDay=' + x.day + ';saveState();renderView()">' +
+          '<div class="mono text-xxs" style="opacity:0.8;">Day ' + x.day + '</div>' +
+          '<div style="font-size:12px;font-weight:700;white-space:nowrap;">' + esc(x.date.split(' ')[0]) + '</div>' +
+        '</button>';
+      }).join('');
+
+      var chainHtml = '<div class="commute-chain">' +
+        '<div class="chain-node">🏨 出发点</div>' +
+        d.spots.map(function (s, idx) {
+          return '<div class="chain-leg"><span>' + esc(s.legMode) + '</span><span class="chain-arrow">────▶</span><span>' + esc(s.legTime) + '</span></div>' +
+            '<a href="#spot-card-' + s.id + '" class="chain-node"><span class="chain-num">' + (idx + 1) + '</span><span>' + esc(s.shortPin) + '</span></a>';
+        }).join('') +
+      '</div>';
+
+      var fullDayMapUrl = gmapMultiStopUrl(d.baseHotelQuery, d.spots, d.travelMode);
+      var bdg = function (lvl, txt) {
+        if (lvl === 'required') return '<span class="badge b-err">🔴 ' + esc(txt) + '</span>';
+        if (lvl === 'recommended') return '<span class="badge b-warn">🟡 ' + esc(txt) + '</span>';
+        if (lvl === 'done') return '<span class="badge b-ok">✅ ' + esc(txt) + '</span>';
+        return '<span class="badge b-soft">🟢 ' + esc(txt) + '</span>';
+      };
+
+      var spotCards = d.spots.map(function (s, idx) {
+        var done = !!state.doneSpots[s.id];
+        var mapOpen = !!state.openMaps[s.id];
+        return '<article id="spot-card-' + s.id + '" class="card stack-sm" style="opacity:' + (done ? '0.74' : '1') + ';">' +
+          '<div class="flex-between" style="border-bottom:1px solid var(--border-soft);padding-bottom:10px;align-items:flex-start;">' +
+            '<div style="display:flex;gap:10px;align-items:flex-start;">' +
+              '<button class="check-btn ' + (done ? 'done' : '') + '" onclick="state.doneSpots[\'' + s.id + '\']=!state.doneSpots[\'' + s.id + '\'];saveState();renderView()">' + (done ? '✓' : (idx + 1)) + '</button>' +
+              '<div>' +
+                '<div class="flex-row" style="margin-bottom:4px;"><span class="mono text-xs" style="font-weight:700;color:var(--brand);">' + esc(s.time) + '</span><span class="badge b-soft">⏱️ ' + esc(s.duration) + '</span><span class="badge b-brand">💰 ' + esc(s.ticketPrice.split('·')[0].trim()) + '</span></div>' +
+                '<h3 class="h3 ' + (done ? 'strike' : '') + '">' + esc(s.name) + '</h3>' +
+              '</div>' +
+            '</div>' +
+            bdg(s.bookingLevel, s.bookingText) +
+          '</div>' +
+          '<div class="flex-row">' +
+            '<a href="' + gmapSearchUrl(s.mapQuery) + '" target="_blank" rel="noopener" class="pill-btn gmap">📍 Google Maps 定位</a>' +
+            '<a href="' + gmapDirUrl(s.prevOrigin, s.mapQuery, d.travelMode) + '" target="_blank" rel="noopener" class="pill-btn">🧭 从上一站导航</a>' +
+            '<button class="pill-btn" onclick="state.openMaps[\'' + s.id + '\']=!state.openMaps[\'' + s.id + '\'];renderView()">' + (mapOpen ? '🔼 收起实景地图' : '🌐 展开实景地图') + '</button>' +
+          '</div>' +
+          (mapOpen ? '<div class="map-embed-wrap"><iframe class="map-iframe" loading="lazy" src="' + gmapEmbedSrc(s.mapQuery) + '"></iframe></div>' : '') +
+          (wm !== 'rainy' ? '<div class="stack-sm text-xs">' +
+            '<div class="soft-box"><strong>🏛️ 深度景点介绍 & 必拍机位：</strong><div class="muted" style="margin-top:4px;">' + ml(s.intro) + '</div></div>' +
+            '<div class="grid-2">' +
+              '<div class="soft-box"><strong>🚇 怎么去（详细通勤 & 车费）：</strong><div style="margin-top:4px;"><span class="badge b-blue" style="margin-bottom:4px;">' + esc(s.legMode) + ' · ' + esc(s.legTime) + ' · ' + esc(s.legPrice) + '</span><div class="muted">' + ml(s.commuteDetail) + '</div></div></div>' +
+              '<div class="soft-box"><strong>💰 门票与消费价格明细（1 AUD ≈ 4.8 RMB）：</strong><div class="muted" style="margin-top:4px;">' + ml(s.priceDetail) + '</div></div>' +
+            '</div>' +
+          '</div>' : '') +
+          (wm !== 'sunny' ? '<div class="callout callout-blue"><strong>🌧️ 雨天替代与价格：</strong>' + ml(s.rainAlt) + '</div>' : '') +
+          '<div class="callout callout-warn"><strong style="color:var(--warn);">⚠️ 注意事项：</strong>' + ml(s.tips) + '</div>' +
+        '</article>';
+      }).join('');
+
+      var noteKey = state.selectedRoute + '_d' + d.day;
+      return '<div class="stack fade-in">' +
+        '<div class="card flex-between" style="padding:12px 15px;">' +
+          '<div class="flex-row">' +
+            '<span class="text-xs" style="font-weight:700;">路线：</span>' +
+            '<select onchange="selectRoute(this.value, false)" style="background:var(--surface-soft);border:1px solid var(--border);border-radius:9px;padding:6px 10px;font-size:12.5px;font-weight:600;">' +
+              '<option value="nsw" ' + (state.selectedRoute === 'nsw' ? 'selected' : '') + '>路线A：悉尼+周边 (0换酒店最省)</option>' +
+              '<option value="mel" ' + (state.selectedRoute === 'mel' ? 'selected' : '') + '>路线B：悉尼+墨尔本+十二门徒</option>' +
+              '<option value="reef" ' + (state.selectedRoute === 'reef' ? 'selected' : '') + '>路线C：悉尼+凯恩斯大堡礁</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="weather-bar">' +
+            '<button class="w-btn ' + (wm === 'both' ? 'active' : '') + '" onclick="state.weatherMode=\'both\';saveState();renderView()">🌗 晴雨同看</button>' +
+            '<button class="w-btn ' + (wm === 'sunny' ? 'active' : '') + '" onclick="state.weatherMode=\'sunny\';saveState();renderView()">☀️ 晴天版</button>' +
+            '<button class="w-btn ' + (wm === 'rainy' ? 'active' : '') + '" onclick="state.weatherMode=\'rainy\';saveState();renderView()">🌧️ 雨天版</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="day-strip">' + pills + '</div>' +
+        '<section class="card stack-sm">' +
+          '<div class="flex-between"><div class="flex-row"><span class="badge b-brand">Day ' + d.day + '</span><strong>' + esc(d.date) + ' · ' + esc(d.city) + '</strong></div><span class="badge b-orange">💰 ' + esc(d.dayCostSummary) + '</span></div>' +
+          '<h2 class="h2">' + esc(d.title) + '</h2>' +
+          '<div class="flex-row">' +
+            (d.day >= 1 && d.day <= 8 ? '<button class="pill-btn primary" onclick="openDayOnInteractiveMap(' + d.day + ')">🗺️ 在互动地图查看今日轨迹</button>' : '') +
+            '<a href="' + fullDayMapUrl + '" target="_blank" rel="noopener" class="pill-btn gmap">🚀 唤起 Google Maps 全程导航</a>' +
+          '</div>' +
+          chainHtml +
+          (wm !== 'rainy' ? '<div class="callout callout-ok"><strong>☀️ 晴天主线：</strong>' + esc(d.sunnySummary) + '</div>' : '') +
+          (wm !== 'sunny' ? '<div class="callout callout-blue"><strong>' + esc(d.rainyPlan) + '</strong></div>' : '') +
+        '</section>' +
+        spotCards +
+        '<section class="card stack-sm">' +
+          '<label class="text-xs" style="font-weight:700;">📝 Day ' + d.day + ' 私人备忘</label>' +
+          '<textarea class="textarea" oninput="state.dayNotes[\'' + noteKey + '\']=this.value;saveState()" placeholder="记下确认单号、车次或集合地址...">' + esc(state.dayNotes[noteKey] || '') + '</textarea>' +
+        '</section>' +
+      '</div>';
+    }
+
+    function renderCommute() {
+      return '<div class="stack fade-in">' +
+        '<section class="card stack-sm"><h2 class="h2">🚇 澳洲城际 & 市内通勤与票价百科（1 AUD ≈ 4.8 RMB）</h2>' +
+          '<div class="callout callout-brand">💳 <strong>免买实体公交卡！</strong> 悉尼与墨尔本均支持直接刷 <strong>Apple Pay / Visa / Mastercard</strong> 拍卡乘车！注意：① 每人必须各自刷独立的一张卡/手机；② 墨尔本电车上车刷下车不刷（免费电车区内千万别刷卡！），悉尼所有车船<strong>上下车都必须刷卡</strong>！</div>' +
+        '</section>' +
+        '<section class="card stack-sm"><h3 class="h3">✈️ 三城机场 ↔ 市区酒店 2个女生比价表</h3>' +
+          '<div style="overflow-x:auto;"><table class="price-table">' +
+            '<thead><tr><th>机场</th><th>机场快线/火车</th><th>两人拼 Uber（门到门）</th><th>结论</th></tr></thead>' +
+            '<tbody>' +
+              '<tr><td><strong>悉尼 SYD</strong> (9km)</td><td>火车单人 $21.50 · 两人 <strong>AUD $43(≈¥206)</strong></td><td>整车 <strong>AUD $45–56</strong> · 人均 <strong>≈¥120</strong></td><td><span class="badge b-ok">选 Uber 免搬箱子！</span></td></tr>' +
+              '<tr><td><strong>墨尔本 MEL</strong> (23km)</td><td>SkyBus 单程$25.9 / <strong>往返套票$43.4/人</strong></td><td>整车 <strong>AUD $58–70</strong> · 人均 <strong>≈¥154</strong></td><td><span class="badge b-brand">住Collins选Uber直达</span></td></tr>' +
+              '<tr><td><strong>凯恩斯 CNS</strong> (6km)</td><td>无轨道交通</td><td>12分钟整车仅 <strong>AUD $22</strong> · 人均 <strong>≈¥52</strong>！</td><td><span class="badge b-ok">100% 选 Uber！</span></td></tr>' +
+            '</tbody>' +
+          '</table></div>' +
+        '</section>' +
+        '<div class="grid-2 text-xs">' +
+          '<div class="card stack-sm"><div class="flex-between"><h3 class="h3">⛴️ 悉尼 Opal 封顶规则</h3><span class="badge b-ok">周五六日 $9.65 封顶！</span></div><ul class="clean"><li><strong>周一至周四封顶：</strong>AUD $19.30/天</li><li><strong>🔥 周五/周六/周日封顶：</strong>仅 <strong>AUD $9.65 (≈¥46)/天</strong>！随便坐大渡轮去曼利/动物园、坐2h火车往返蓝山全包！</li><li><strong>整周封顶：</strong>AUD $50.00 (≈¥240)。</li></ul></div>' +
+          '<div class="card stack-sm"><div class="flex-between"><h3 class="h3">🚋 墨尔本电车规则</h3><span class="badge b-orange">CBD免费电车 $0！</span></div><ul class="clean"><li><strong>免费电车区：</strong>可在「🗺️ 互动地图」页查看绿色虚线框边界，框内坐电车 AUD $0！</li><li><strong>出免费区/坐火车：</strong>2小时通票 AUD $5.70；平日封顶 $11.40；<strong>周末封顶仅 AUD $8.00 (≈¥38)</strong>！</li></ul></div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function calcBudgetTotals() {
+      var r = ROUTES_META[state.selectedRoute];
+      var intlFlight = 4547, visaInsSim = 1350;
+      var hotelPerNight = state.budgetHotelTier === 'saver' ? 480 : state.budgetHotelTier === 'value' ? 620 : 950;
+      var hotelTotal = hotelPerNight * 8 - (state.selectedRoute === 'reef' ? 420 : state.selectedRoute === 'mel' ? 180 : 0);
+      var foodPerDay = state.budgetFoodTier === 'saver' ? 280 : state.budgetFoodTier === 'balanced' ? 370 : 550;
+      var foodTotal = Math.round(foodPerDay * 8.5);
+      var musicalTotal = state.budgetMusicalCount * 750;
+      var grandTotal = intlFlight + visaInsSim + r.domesticRmb + hotelTotal + r.localTransitRmb + r.toursRmb + musicalTotal + foodTotal;
+      return { intlFlight: intlFlight, visaInsSim: visaInsSim, domesticRmb: r.domesticRmb, hotelTotal: hotelTotal, localTransitRmb: r.localTransitRmb, toursRmb: r.toursRmb, musicalTotal: musicalTotal, foodTotal: foodTotal, grandTotal: grandTotal, remaining: grandTotal - intlFlight };
+    }
+
+    function renderBudget() {
+      var b = calcBudgetTotals();
+      return '<div class="stack fade-in"><section class="card stack-sm">' +
+        '<div class="flex-between"><div><h2 class="h2">💰 1.5万–2万人民币全包预算计算器（人均）</h2><p class="text-xs muted" style="margin:4px 0 0;">已包含你们买好的 ¥4,547 国际往返机票与签证费！</p></div>' +
+        '<div style="text-align:right;"><div class="text-xxs muted">全包人均总计</div><div class="mono" style="font-size:24px;font-weight:800;color:' + (b.grandTotal <= 20000 ? 'var(--brand)' : 'var(--warn)') + ';">¥' + b.grandTotal.toLocaleString() + '</div><div class="text-xxs muted">除已买机票外还需：<strong>¥' + b.remaining.toLocaleString() + '</strong></div></div></div>' +
+        '<div class="grid-2 text-xs">' +
+          '<div class="soft-box stack-sm" style="gap:6px;"><strong>1. 路线：</strong><div class="flex-row">' +
+            '<button class="seg-btn ' + (state.selectedRoute === 'nsw' ? 'active' : '') + '" onclick="selectRoute(\'nsw\',false)">悉尼+周边(最省)</button>' +
+            '<button class="seg-btn ' + (state.selectedRoute === 'mel' ? 'active' : '') + '" onclick="selectRoute(\'mel\',false)">悉尼+墨尔本</button>' +
+            '<button class="seg-btn ' + (state.selectedRoute === 'reef' ? 'active' : '') + '" onclick="selectRoute(\'reef\',false)">悉尼+大堡礁</button>' +
+          '</div></div>' +
+          '<div class="soft-box stack-sm" style="gap:6px;"><strong>2. 住宿档位：</strong><div class="flex-row">' +
+            '<button class="seg-btn ' + (state.budgetHotelTier === 'saver' ? 'active' : '') + '" onclick="state.budgetHotelTier=\'saver\';saveState();renderView()">经济连锁</button>' +
+            '<button class="seg-btn ' + (state.budgetHotelTier === 'value' ? 'active' : '') + '" onclick="state.budgetHotelTier=\'value\';saveState();renderView()">高分四星/公寓</button>' +
+            '<button class="seg-btn ' + (state.budgetHotelTier === 'upscale' ? 'active' : '') + '" onclick="state.budgetHotelTier=\'upscale\';saveState();renderView()">五星海景</button>' +
+          '</div></div>' +
+          '<div class="soft-box stack-sm" style="gap:6px;"><strong>3. 餐饮风格：</strong><div class="flex-row">' +
+            '<button class="seg-btn ' + (state.budgetFoodTier === 'saver' ? 'active' : '') + '" onclick="state.budgetFoodTier=\'saver\';saveState();renderView()">超市早+简餐</button>' +
+            '<button class="seg-btn ' + (state.budgetFoodTier === 'balanced' ? 'active' : '') + '" onclick="state.budgetFoodTier=\'balanced\';saveState();renderView()">Brunch+穿插大餐</button>' +
+            '<button class="seg-btn ' + (state.budgetFoodTier === 'foodie' ? 'active' : '') + '" onclick="state.budgetFoodTier=\'foodie\';saveState();renderView()">顿顿大餐</button>' +
+          '</div></div>' +
+          '<div class="soft-box stack-sm" style="gap:6px;"><strong>4. 音乐剧场次：</strong><div class="flex-row">' +
+            '<button class="seg-btn ' + (state.budgetMusicalCount === 0 ? 'active' : '') + '" onclick="state.budgetMusicalCount=0;saveState();renderView()">0 场</button>' +
+            '<button class="seg-btn ' + (state.budgetMusicalCount === 1 ? 'active' : '') + '" onclick="state.budgetMusicalCount=1;saveState();renderView()">1 场精选</button>' +
+            '<button class="seg-btn ' + (state.budgetMusicalCount === 2 ? 'active' : '') + '" onclick="state.budgetMusicalCount=2;saveState();renderView()">2 场过瘾</button>' +
+          '</div></div>' +
+        '</div>' +
+        '<div class="soft-box">' +
+          '<div class="budget-row"><span>✈️ 国际往返机票（已付）</span><span class="mono" style="font-weight:700;">¥' + b.intlFlight + '</span></div>' +
+          '<div class="budget-row"><span>🛂 澳洲 600 签证 + 保险 + 电话卡</span><span class="mono" style="font-weight:700;">¥' + b.visaInsSim + '</span></div>' +
+          '<div class="budget-row"><span>🛫 澳洲内陆往返机票</span><span class="mono" style="font-weight:700;">¥' + b.domesticRmb + '</span></div>' +
+          '<div class="budget-row"><span>🏨 8 晚核心安全区住宿（人均）</span><span class="mono" style="font-weight:700;">¥' + b.hotelTotal + '</span></div>' +
+          '<div class="budget-row"><span>🚇 市内公交渡轮 + 机场接送</span><span class="mono" style="font-weight:700;">¥' + b.localTransitRmb + '</span></div>' +
+          '<div class="budget-row"><span>🎟️ 一日小团 & 必去门票</span><span class="mono" style="font-weight:700;">¥' + b.toursRmb + '</span></div>' +
+          '<div class="budget-row"><span>🎭 音乐剧门票（' + state.budgetMusicalCount + ' 场）</span><span class="mono" style="font-weight:700;">¥' + b.musicalTotal + '</span></div>' +
+          '<div class="budget-row"><span>🍽️ 8.5 天餐饮咖啡水果</span><span class="mono" style="font-weight:700;">¥' + b.foodTotal + '</span></div>' +
+        '</div></section></div>';
+    }
+
+    function renderHotels() {
+      var c = state.hotelCity;
+      var list = HOTEL_AREAS[c] || HOTEL_AREAS.sydney;
+      return '<div class="stack fade-in"><section class="card stack-sm"><h2 class="h2">🏨 高性价比安全住宿区（可跳互动地图查看位置）</h2><div class="flex-row">' +
+        '<button class="seg-btn ' + (c === 'sydney' ? 'active' : '') + '" onclick="state.hotelCity=\'sydney\';saveState();renderView()">悉尼</button>' +
+        '<button class="seg-btn ' + (c === 'melbourne' ? 'active' : '') + '" onclick="state.hotelCity=\'melbourne\';saveState();renderView()">墨尔本</button>' +
+        '<button class="seg-btn ' + (c === 'cairns' ? 'active' : '') + '" onclick="state.hotelCity=\'cairns\';saveState();renderView()">凯恩斯大堡礁</button>' +
+      '</div></section>' +
+      list.map(function (a, i) {
+        return '<article class="card stack-sm">' +
+          '<div class="flex-between"><div><span class="badge ' + (i === 0 ? 'b-brand' : 'b-soft') + '">' + esc(a.rank) + '</span><h3 class="h3" style="margin-top:4px;">' + esc(a.name) + '</h3><div class="text-xxs muted">📍 ' + esc(a.stations) + ' · ' + esc(a.priceRange) + '</div></div><span class="badge b-ok">安全 ' + esc(a.safetyScore) + '</span></div>' +
+          '<p class="text-xs" style="margin:0;">' + esc(a.whyGirls) + '</p>' +
+          '<div class="flex-row"><a href="' + gmapSearchUrl('hotels near ' + a.mapQuery) + '" target="_blank" rel="noopener" class="pill-btn gmap">📍 在 Google Maps 搜周边酒店</a>' +
+          '<button class="pill-btn" onclick="switchMapRegion(\'' + c + '\');switchTab(\'imap\')">🗺️ 在互动地图上看这片区</button></div>' +
+        '</article>';
+      }).join('') + '</div>';
+    }
+
+    function renderMusicals() {
+      return '<div class="stack fade-in"><section class="card stack-sm"><h2 class="h2">🎭 2027年9月音乐剧票价 & 剧院定位</h2><p class="text-xs muted" style="margin:0;">周二至周四晚场比周末省 AUD $30–50/张！</p></section><div class="grid-2">' +
+        MUSICALS_DATA.map(function (m) {
+          return '<article class="card stack-sm"><div class="flex-between"><span class="badge b-' + m.type + '">' + esc(m.city) + ' · ' + esc(m.badge) + '</span><a href="' + gmapSearchUrl(m.mapQuery) + '" target="_blank" rel="noopener" class="pill-btn gmap">📍 剧院定位</a></div>' +
+            '<h3 class="h3">' + esc(m.cnTitle) + '</h3><div class="text-xs muted">🏛️ ' + esc(m.venue) + '<br/>📅 ' + esc(m.dates) + ' · 💰 <strong>' + esc(m.price) + '</strong></div><div class="callout callout-brand">' + esc(m.tip) + '</div></article>';
+        }).join('') + '</div></div>';
+    }
+
+    function renderFoodShop() {
+      var sub = state.foodSubTab;
+      var body = sub === 'food'
+        ? '<div class="grid-2">' + FOOD_DATA.map(function (f) {
+            var liked = !!state.wishlistFood[f.id];
+            return '<div class="card stack-sm" style="justify-content:space-between;"><div class="stack-sm" style="gap:5px;"><div class="flex-between"><div class="flex-row"><span class="badge b-brand">' + esc(f.city) + '</span><span class="badge b-orange">' + esc(f.price) + '</span></div><button onclick="state.wishlistFood[\'' + f.id + '\']=!state.wishlistFood[\'' + f.id + '\'];saveState();renderView()" style="border:none;background:transparent;cursor:pointer;font-size:16px;">' + (liked ? '❤️' : '🤍') + '</button></div><h4 class="h3">' + esc(f.name) + '</h4><div class="text-xs">' + esc(f.dish) + '</div><div class="soft-box text-xxs muted">💡 ' + esc(f.tip) + '</div></div><a href="' + gmapSearchUrl(f.mapQuery) + '" target="_blank" rel="noopener" class="pill-btn gmap" style="justify-content:center;">📍 Google Maps 导航</a></div>';
+          }).join('') + '</div>'
+        : '<div class="stack">' + SHOPPING_ITEMS.map(function (s) {
+            var ck = !!state.shoppingChecked[s.id];
+            return '<label class="check-row"><input type="checkbox" ' + (ck ? 'checked' : '') + ' onchange="state.shoppingChecked[\'' + s.id + '\']=!state.shoppingChecked[\'' + s.id + '\'];saveState();renderView()"/><div class="text-xs"><strong class="' + (ck ? 'strike' : '') + '">' + esc(s.name) + '</strong> <span class="badge b-soft">' + esc(s.cat) + '</span><div class="muted" style="margin-top:3px;">' + esc(s.detail) + '</div></div></label>';
+          }).join('') + '</div>';
+      return '<div class="stack fade-in"><section class="card flex-between"><h2 class="h2">美食价格 & 购物退税</h2><div class="flex-row"><button class="seg-btn ' + (sub === 'food' ? 'active' : '') + '" onclick="state.foodSubTab=\'food\';saveState();renderView()">🍽️ 必吃美食</button><button class="seg-btn ' + (sub === 'shop' ? 'active' : '') + '" onclick="state.foodSubTab=\'shop\';saveState();renderView()">🛍️ 伴手礼&退税</button></div></section>' + body + '</div>';
+    }
+
+    function renderSafetyAndPrep() {
+      var total = 0, done = 0;
+      PREP_CHECKLIST.forEach(function (g) { g.items.forEach(function (i) { total++; if (state.checkedPrep[i.id]) done++; }); });
+      state.customPrepItems.forEach(function (i) { total++; if (state.checkedPrep[i.id]) done++; });
+      var pct = total ? Math.round((done / total) * 100) : 0;
+      return '<div class="stack fade-in"><section class="card stack-sm"><h2 class="h2">🛡️ 女生夜归安全 & 行前清单 (' + pct + '%)</h2><div class="progress-track"><div class="progress-fill" style="width:' + pct + '%;"></div></div>' +
+        '<div class="grid-2 text-xs"><div class="callout callout-ok">✅ 22:00左右归巢走主街或叫 Uber 极安全；澳洲紧急电话 <strong class="mono">000</strong>。</div><div class="callout callout-err">⚠️ 天黑避开公园暗巷；带国内三孔插线板直插；严禁肉干水果入境！</div></div></section>' +
+        PREP_CHECKLIST.map(function (g) {
+          return '<section class="stack-sm"><h3 class="h3">' + esc(g.phase) + '</h3>' + g.items.map(function (it) {
+            var ck = !!state.checkedPrep[it.id];
+            return '<label class="check-row"><input type="checkbox" ' + (ck ? 'checked' : '') + ' onchange="state.checkedPrep[\'' + it.id + '\']=!state.checkedPrep[\'' + it.id + '\'];saveState();renderView()"/><span class="text-xs ' + (ck ? 'strike' : '') + '" style="flex:1;">' + esc(it.text) + '</span><span class="badge b-soft">' + esc(it.tag) + '</span></label>';
+          }).join('') + '</section>';
+        }).join('') + '</div>';
+    }
+
+    function renderView() {
+      var el = document.getElementById('app-root');
+      if (state.activeTab === 'imap') {
+        el.innerHTML = renderInteractiveMapTab();
+        bindMapGestures();
+      } else if (state.activeTab === 'routes') el.innerHTML = renderRoutes();
+      else if (state.activeTab === 'itinerary') el.innerHTML = renderItinerary();
+      else if (state.activeTab === 'commute') el.innerHTML = renderCommute();
+      else if (state.activeTab === 'budget') el.innerHTML = renderBudget();
+      else if (state.activeTab === 'hotels') el.innerHTML = renderHotels();
+      else if (state.activeTab === 'musicals') el.innerHTML = renderMusicals();
+      else if (state.activeTab === 'foodshop') el.innerHTML = renderFoodShop();
+      else if (state.activeTab === 'safety') el.innerHTML = renderSafetyAndPrep();
+    }
+
+    function buildSummary() {
+      var r = ROUTES_META[state.selectedRoute];
+      var b = calcBudgetTotals();
+      var lines = ['🇦🇺 澳洲九日行程 v4.0 · 含互动地图 & 通勤价格（2027.09.10–09.19）', '📍 选定路线：' + r.name, '💰 全包人均测算：约 ¥' + b.grandTotal.toLocaleString() + '（已含国际机票 ¥4,547 + 签证 ¥1,150）', ''];
+      ROUTE_DAYS[state.selectedRoute].forEach(function (d) { lines.push('• Day ' + d.day + ' (' + d.date + ')：' + d.title + ' [' + d.dayCostSummary + ']'); });
+      return lines.join('\n');
+    }
+    function openSummaryModal() { document.getElementById('summary-ta').value = buildSummary(); document.getElementById('summary-modal').classList.add('open'); }
+    function closeSummaryModal() { document.getElementById('summary-modal').classList.remove('open'); }
+    function copySummary() {
+      var ta = document.getElementById('summary-ta'); ta.select();
+      try { navigator.clipboard.writeText(ta.value); } catch (e) { document.execCommand('copy'); }
+      var tip = document.getElementById('copy-tip'); tip.style.opacity = '1';
+      setTimeout(function () { tip.style.opacity = '0'; }, 2200);
+    }
+    function openInstallModal() { document.getElementById('install-modal').classList.add('open'); }
+    function closeInstallModal() { document.getElementById('install-modal').classList.remove('open'); }
+
+    renderNavs();
+    renderView();
+  </script>
+</body>
+</html>
